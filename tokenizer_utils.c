@@ -6,7 +6,7 @@
 /*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 06:15:33 by sorakann          #+#    #+#             */
-/*   Updated: 2022/05/03 09:44:47 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/03 10:18:47 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ static char	*insert_space_after_actual_pos(char *line, int *actual_position)
 	free(start_with_space);
 	free(end);
 
-	// (*actual_position)++;
 	return (line);	
 }
 
