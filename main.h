@@ -6,7 +6,7 @@
 /*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 16:00:42 by ski               #+#    #+#             */
-/*   Updated: 2022/05/03 08:48:47 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/03 11:42:43 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ void	handler_signal_main(int sig_code);
 void	link_signal_main(t_data *d);
 /* ************************************************************************** */
 char *chevron_space_maker(char *line);
+char *pipeline_space_maker(char *line);
+
 char **tokenizer(char *line);
 void free_array(char **array);
 void print_array(char **array);

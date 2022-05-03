@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tokenizer_utils.c                                  :+:      :+:    :+:   */
+/*   pipeline_space_maker.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 06:15:33 by sorakann          #+#    #+#             */
-/*   Updated: 2022/05/03 10:18:47 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/03 11:45:42 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 /* ************************************************************************** */
-static bool	is_chevron(char c);
+static bool	is_pipeline(char c);
 static bool	is_white_space(char c);
 static bool	is_prev_char_correct(char *line, int actual_position);
 static bool	is_next_char_correct(char *line, int actual_position);
@@ -20,14 +20,14 @@ static char	*insert_space_before_actual_pos(char *line, int *actual_position);
 static char	*insert_space_after_actual_pos(char *line, int *actual_position);
 
 /* ************************************************************************** */
-char *chevron_space_maker(char *line)
+char *pipeline_space_maker(char *line)
 {
     int i;
 
 	i = 0;
     while (line[i] != 0)
 	{
-		if (is_chevron(line[i]))
+		if (is_pipeline(line[i]))
 		{
 			if (is_prev_char_correct(line, i) == false)
 				line = insert_space_before_actual_pos(line, &i);
@@ -101,7 +101,7 @@ static bool	is_prev_char_correct(char *line, int actual_position)
 	if (actual_position == 0)
 		return (true);
 		
-	if (is_chevron(line[actual_position - 1]))
+	if (is_pipeline(line[actual_position - 1]))
 		return (true);
 
 	if (is_white_space(line[actual_position - 1]))
@@ -122,7 +122,7 @@ static bool	is_next_char_correct(char *line, int actual_position)
 	if (actual_position == len - 1)
 		return (true);
 		
-	if (is_chevron(line[actual_position + 1]))
+	if (is_pipeline(line[actual_position + 1]))
 		return (true);
 
 	if (is_white_space(line[actual_position + 1]))
@@ -132,9 +132,12 @@ static bool	is_next_char_correct(char *line, int actual_position)
 }
 
 /* ************************************************************************** */
-static bool is_chevron(char c)
+
+
+/* ************************************************************************** */
+static bool is_pipeline(char c)
 {
-    if (c == '<' || c == '>')
+    if (c == '|')
         return (true);
     return (false);
 }
