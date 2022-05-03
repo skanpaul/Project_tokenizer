@@ -6,7 +6,7 @@
 /*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 18:19:52 by ski               #+#    #+#             */
-/*   Updated: 2022/05/03 08:45:53 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/03 13:35:47 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,16 @@
 static bool is_double_quote_correct(char *line);
 static bool is_single_quote_correct(char *line);
 static bool is_line_empty(char *line);
-static void add_token(char **token_array, char *token);
+static void add_token(char ***token_array, char *token);
+static void copy_array(char ***array_src, char ***array_dst);
 static int 	get_size_array(char **token_array);
 
 /* ************************************************************************** */
 char **tokenizer(char *line)
 {
 	char **token_array;
+	char *str1;
+	char *str2;
 
 	token_array = NULL;
 	
@@ -45,34 +48,32 @@ char **tokenizer(char *line)
 	// fonction annexe
 	// a) space maker pour chevron
 
-	add_token(token_array, "salut");
-	
-	print_array(token_array);
-
 	return token_array;		
 }
 
 
 /* ************************************************************************** */
-static void add_token(char **token_array, char *token)
+static void add_token(char ***token_array, char *token)
 {
-	int size;
-
-	size = get_size_array(token_array);	
+	int size_array;
+	char **buff_array;
 	
-	if (token_array == NULL)
+	if (*token_array == NULL)
 	{
-		token_array = (char **)malloc(2 * sizeof(char *));
-		token_array[0] = token;
-		token_array[1] = NULL;
+		*token_array = (char **)malloc(2 * sizeof(char *));
+		(*token_array)[0] = token;
+		(*token_array)[1] = NULL;
 	}
 	else
 	{
-		(void)token;
-
-		
-	}
-	
+		size_array = get_size_array(*token_array);		
+		buff_array = (char **)malloc(size_array + 2 * sizeof(char *));		
+		copy_array(token_array, &buff_array);
+		buff_array[size_array] = token;
+		buff_array[size_array + 1] = NULL;		
+		free(*token_array);		
+		*token_array = buff_array;			
+	}	
 }
 /* ************************************************************************** */
 static int get_size_array(char **token_array)
@@ -87,16 +88,19 @@ static int get_size_array(char **token_array)
 }
 
 /* ************************************************************************** */
-static void copy_array(char **array_src, char **array_dst)
+static void copy_array(char ***array_src, char ***array_dst)
 {
-	
 	int i;
 	int size_src;
 
-	size_src = get_size_array(array_src);
+	size_src = get_size_array(*array_src);
 
 	i = 0;
-	// while (array_src)
+	while ((*array_src)[i] != NULL)
+	{
+		(*array_dst)[i] = (*array_src)[i];
+		i++;		
+	}	
 	
 }
 

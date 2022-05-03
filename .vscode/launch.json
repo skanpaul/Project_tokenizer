@@ -10,7 +10,9 @@
 			"request": "launch",
 			"program": "/Users/ski/Documents/8_Experimentation/Project_tokenizer/a.out",
 			// "program": "${fileDirname}/${fileBasenameNoExtension}",
-			"args": [],
+			"args": [
+				
+			],
 			"stopAtEntry": false,
 			"cwd": "/Users/ski/Documents/8_Experimentation/Project_tokenizer",
 			// "cwd": "${fileDirname}",
