@@ -6,7 +6,7 @@
 /*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 15:59:47 by ski               #+#    #+#             */
-/*   Updated: 2022/05/03 11:43:09 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/03 12:51:58 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ int main (int argc, char **argv, char **envp)
 	char *new_line;
 	
 	new_line = NULL;
-	init_struc_sigaction(&d);
-	link_signal_main(&d);
+
 	
 	// ---------------------------------------------------
 	while (1)
