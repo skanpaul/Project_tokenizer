@@ -6,7 +6,7 @@
 /*   By: sorakann <sorakann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 18:19:52 by ski               #+#    #+#             */
-/*   Updated: 2022/05/02 22:40:41 by sorakann         ###   ########.fr       */
+/*   Updated: 2022/05/03 06:13:03 by sorakann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,12 @@ char **tokenizer(char *line)
 		return (NULL);
 	}
 	//---------------------------------------------------------------------
+	// splitter selon>
+	// 1) whitespace
+	// 2) double quote
+	// 3) single quote
+	// fonction annexe
+	// a) space maker pour chevron
 
 	add_token(token_array, "salut");
 	
