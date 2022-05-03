@@ -1,0 +1,33 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "cppbuild",
+			"label": "C/C++: clang build active file",
+			"command": "/usr/bin/clang",
+			"args": [
+				"-fdiagnostics-color=always",
+				"-g",
+				"*.c",
+				"-lreadline",
+				"-L.",
+				"-lft",
+				"-o",
+				"/Users/ski/Documents/8_Experimentation/Project_tokenizer/a.out"
+				// "${fileDirname}/${fileBasenameNoExtension}"
+			],
+			"options": {
+				"cwd": "/Users/ski/Documents/8_Experimentation/Project_tokenizer"
+				// "cwd": "${fileDirname}"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"detail": "compiler: /usr/bin/clang"
+		}
+	]
+}
