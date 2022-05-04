@@ -74,7 +74,6 @@ char	**split_shell_line(char *line, char separator)
 		
 		if (		(line[i] != separator) 		&& 		(	i == 0 || line[i - 1] == separator	)		)
 		{
-
 			start = i;
 		}
 
@@ -82,8 +81,10 @@ char	**split_shell_line(char *line, char separator)
 
 
 
-		if ((line[i] != separator) && ((line[i + 1] == '\0') || (line[i + 1] == separator)))
+		if (		(line[i] != separator) 		&& 		(	line[i + 1] == '\0') || line[i + 1] == separator		)
+		{
 			res[j++] = ft_substr(line, start, (i - start) + 1);
+		}
 
 
 
