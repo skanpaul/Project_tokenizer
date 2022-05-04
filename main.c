@@ -6,7 +6,7 @@
 /*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 15:59:47 by ski               #+#    #+#             */
-/*   Updated: 2022/05/04 11:55:28 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/04 14:38:04 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,16 +48,16 @@ int main (int argc, char **argv, char **envp)
 		ft_add_history(new_line);
 
 		if (is_line_with_correct_quote(new_line) == false)
-			ft_printf("BAD QUOTING\n");
+			ft_printf("\nBAD QUOTING\n");
 
 		new_line = chevron_space_maker(new_line);
 		new_line = pipeline_space_maker(new_line);
 		ft_printf("space maker APRES: %s\n", new_line);
 		ft_printf("\n");
 
-		array = split_shell_line(new_line, ' ');
+		// array = split_shell_line(new_line, ' ');
 		
-		print_array(array);
+		// print_array(array);
 			
 							
 		if (ft_strncmp(new_line, "exit", ft_strlen("exit") + 1) == 0)

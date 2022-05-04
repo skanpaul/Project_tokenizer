@@ -6,7 +6,7 @@
 /*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 10:28:17 by ski               #+#    #+#             */
-/*   Updated: 2022/05/04 11:29:09 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/04 14:46:30 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,32 +20,50 @@ void init_quote_info(t_quote_info *qti)
 {
 	qti->cnt_real_quote = 0;
 	qti->mem_real_quote = '\0';
-	qti->in_real_quote = false;
+	qti->inside = false;
+	qti->is_real_quote_input = false;
+	qti->is_real_quote_output = false;
 }
 
 /* ************************************************************************** */
-// Need: [ init_quote_info () ] | To use after scanning each charaters
+// To use under the while (...) statement ONLY once
 void refresh_quote_info(t_quote_info *qti, char actual_char)
 {
+	qti->is_real_quote_input = false;
+	qti->is_real_quote_output = false;
 	if (is_quote_char(actual_char))
 		{
-			if (qti->in_real_quote == false)
+			if (qti->inside == false)
 			{
 				qti->mem_real_quote = actual_char;
 				qti->cnt_real_quote++;
-				qti->in_real_quote = true;
+				qti->inside = true;
+				qti->is_real_quote_input = true;
 			}
-			else // (in_real_quote == true)
+			else // (inside == true)
 			{
 				if (qti->mem_real_quote == actual_char)
 				{
 					qti->mem_real_quote = '\0';
 					qti->cnt_real_quote++;
-					qti->in_real_quote = false;
+					qti->inside = false;
+					qti->is_real_quote_output = true;
 				}				
 			}			
 		}
 }
+
+/* ************************************************************************** */
+// bool is_real_quote_char_input(t_quote_info *qti)
+// {
+	
+// }
+
+// /* ************************************************************************** */
+// bool is_real_quote_char_outpu(t_quote_info *qti)
+// {
+	
+// }
 
 /* ************************************************************************** */
 // To used with: [ refresh_info_quote() ]
@@ -60,7 +78,7 @@ bool is_good_number_of_real_quote(t_quote_info *qti)
 // To used in the same scope than: [ refresh_info_quote() ]
 bool is_char_in_real_quote(t_quote_info *qti)
 {
-	if (qti->in_real_quote)
+	if (qti->inside)
 		return (true);
 	return (false);
 }
@@ -69,7 +87,7 @@ bool is_char_in_real_quote(t_quote_info *qti)
 // To used in the same scope than: [ refresh_info_quote() ]
 bool is_char_out_real_quote(t_quote_info *qti)
 {
-	if (qti->in_real_quote)
+	if (qti->inside)
 		return (false);
 	return (true);
 }

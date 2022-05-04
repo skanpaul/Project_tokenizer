@@ -6,7 +6,7 @@
 /*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 16:00:42 by ski               #+#    #+#             */
-/*   Updated: 2022/05/04 11:55:56 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/04 14:44:47 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,9 @@ typedef struct s_quote_info
 {
 	int		cnt_real_quote;
 	char	mem_real_quote;
-	bool	in_real_quote;
+	bool	inside;
+	bool	is_real_quote_input;
+	bool	is_real_quote_output;
 	
 }	t_quote_info;
 
@@ -62,7 +64,7 @@ typedef struct s_data
 	int a;	
 }	t_data;
 /* ************************************************************************** */
-char	**split_shell_line(char const *line, char delimiter);
+char	**split_shell_line(char *line, char delimiter);
 
 bool 	is_line_with_correct_quote(char *line);
 // ----------------------------------------------

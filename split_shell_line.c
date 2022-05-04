@@ -11,12 +11,15 @@
 /* ************************************************************************** */
 
 #include "main.h"
+/* ************************************************************************** */
+static bool is_quote_char(char c);
 
 /* ************************************************************************** */
-static int	count_words(char const *line, char delimiter)
+static int	count_words(char *line, char delimiter)
 {
 	int	i;
 	int	count;
+	char c;
 	t_quote_info qti;
 
 	init_quote_info(&qti);
@@ -26,18 +29,32 @@ static int	count_words(char const *line, char delimiter)
 	while (line[i] != '\0')
 	{
 		refresh_quote_info(&qti, line[i]);
-		
-		if (is_char_out_real_quote(&qti) 
-			&& (line[i] != delimiter)
-			&& ((i == 0)	|| (line[i - 1] == delimiter)))
-			count++;
+		// ------------------------------------------------
+		if (line[i] != delimiter && is_char_out_real_quote(&qti))
+		{
+			if (is_quote_char(line[i]))
+			{
+				if (is_char_out_real_quote(&qti))
+					count ++;
+				
+			}
+			else
+			{
+				if ((i == 0) || (line[i - 1] == delimiter))
+					count++;				
+			}
+
+
+		}
+		// ------------------------------------------------
 		i++;
+		// ------------------------------------------------
 	}
 	return (count);
 }
 
 /* ************************************************************************** */
-char	**split_shell_line(char const *line, char delimiter)
+char	**split_shell_line(char *line, char delimiter)
 {
 	char	**res;
 	int		i;
@@ -65,6 +82,14 @@ char	**split_shell_line(char const *line, char delimiter)
 	}
 	res[j] = 0;
 	return (res);
+}
+
+/* ************************************************************************** */
+static bool is_quote_char(char c)
+{
+	if (c == '\'' || c == '\"')
+		return (true);
+	return (false);
 }
 
 /* ************************************************************************** */
