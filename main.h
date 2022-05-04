@@ -6,7 +6,7 @@
 /*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 16:00:42 by ski               #+#    #+#             */
-/*   Updated: 2022/05/04 10:15:03 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/04 10:47:12 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,15 @@ typedef enum e_token_type
 } t_token_type;
 
 /* ************************************************************************** */
+typedef struct s_quote_info
+{
+	int		cnt_real_quote;
+	char	mem_real_quote;
+	bool	in_real_quote;
+	
+}	t_quote_info;
+
+/* ************************************************************************** */
 typedef struct s_data
 {
 	//--------------------------------
@@ -64,6 +73,9 @@ void	handler_signal_main(int sig_code);
 void	link_signal_main(t_data *d);
 /* ************************************************************************** */
 bool is_pair_quoting_correct(char *line);
+
+void init_quote_info(t_quote_info *qti);
+void refresh_quote_info(t_quote_info *qti, char actual_char);
 
 char *chevron_space_maker(char *line);
 char *pipeline_space_maker(char *line);
