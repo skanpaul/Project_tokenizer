@@ -6,7 +6,7 @@
 /*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 16:00:42 by ski               #+#    #+#             */
-/*   Updated: 2022/05/04 14:44:47 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/04 15:50:29 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ typedef struct s_quote_info
 	int		cnt_real_quote;
 	char	mem_real_quote;
 	bool	inside;
-	bool	is_real_quote_input;
-	bool	is_real_quote_output;
+	bool	flag_input_char;
+	bool	flag_output_char;
 	
 }	t_quote_info;
 
@@ -70,9 +70,11 @@ bool 	is_line_with_correct_quote(char *line);
 // ----------------------------------------------
 void	init_quote_info(t_quote_info *qti);
 void	refresh_quote_info(t_quote_info *qti, char actual_char);
-bool	is_char_in_real_quote(t_quote_info *qti);
-bool	is_char_out_real_quote(t_quote_info *qti);
+bool	is_inside_real_quote(t_quote_info *qti);
+bool	is_outside_real_quote(t_quote_info *qti);
 bool	is_good_number_of_real_quote(t_quote_info *qti);
+bool	is_input_char_real_quote(t_quote_info *qti);
+bool	is_output_char_real_quote(t_quote_info *qti);
 // ----------------------------------------------
 
 char *chevron_space_maker(char *line);

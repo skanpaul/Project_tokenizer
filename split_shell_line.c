@@ -19,7 +19,6 @@ static int	count_words(char *line, char delimiter)
 {
 	int	i;
 	int	count;
-	char c;
 	t_quote_info qti;
 
 	init_quote_info(&qti);
@@ -29,22 +28,15 @@ static int	count_words(char *line, char delimiter)
 	while (line[i] != '\0')
 	{
 		refresh_quote_info(&qti, line[i]);
+
 		// ------------------------------------------------
-		if (line[i] != delimiter && is_char_out_real_quote(&qti))
+		if (line[i] != delimiter)
 		{
-			if (is_quote_char(line[i]))
-			{
-				if (is_char_out_real_quote(&qti))
-					count ++;
-				
-			}
-			else
-			{
-				if ((i == 0) || (line[i - 1] == delimiter))
-					count++;				
-			}
+			if ((i == 0 || line[i - 1] == delimiter) && is_outside_real_quote(&qti))
+				count++;
 
-
+			if (is_input_char_real_quote(&qti))
+				count++;	
 		}
 		// ------------------------------------------------
 		i++;
@@ -53,6 +45,10 @@ static int	count_words(char *line, char delimiter)
 	return (count);
 }
 
+		// if ((str[i] != c) && ((i == 0) || (str[i - 1] == c)))
+		// 	count++;
+		// i++;
+
 /* ************************************************************************** */
 char	**split_shell_line(char *line, char delimiter)
 {
@@ -60,6 +56,9 @@ char	**split_shell_line(char *line, char delimiter)
 	int		i;
 	int		j;
 	int		start;
+	t_quote_info qti;
+
+	init_quote_info(&qti);
 
 	if (!line)
 		return (NULL);
@@ -74,7 +73,9 @@ char	**split_shell_line(char *line, char delimiter)
 	start = 0;
 	while (line[i] != '\0')
 	{
-		if ((line[i] != delimiter) && (i == 0 || (line[i - 1] == delimiter)))
+		refresh_quote_info(&qti, line[i]);
+		if (is_input_char_real_quote(&qti) 
+			|| ((line[i] != delimiter) && (i == 0 || (line[i - 1] == delimiter))))
 			start = i;
 		if ((line[i] != delimiter) && ((line[i + 1] == '\0') || (line[i + 1] == delimiter)))
 			res[j++] = ft_substr(line, start, (i - start) + 1);

@@ -6,7 +6,7 @@
 /*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 15:59:47 by ski               #+#    #+#             */
-/*   Updated: 2022/05/04 14:38:04 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/04 15:05:49 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ int main (int argc, char **argv, char **envp)
 		ft_printf("space maker APRES: %s\n", new_line);
 		ft_printf("\n");
 
-		// array = split_shell_line(new_line, ' ');
+		array = split_shell_line(new_line, ' ');
 		
-		// print_array(array);
+		print_array(array);
 			
 							
 		if (ft_strncmp(new_line, "exit", ft_strlen("exit") + 1) == 0)
