@@ -12,7 +12,8 @@
 
 #include "main.h"
 /* ************************************************************************** */
-static int	count_words(char *line, char delimiter)
+// static int	count_words(char *line, char separator)
+int	count_words(char *line, char separator)
 {
 	int	i;
 	int	count;
@@ -27,13 +28,22 @@ static int	count_words(char *line, char delimiter)
 		refresh_quote_info(&qti, line[i]);
 
 		// ------------------------------------------------
-		if (line[i] != delimiter)
+		if (line[i] != separator)
 		{
-			if ((i == 0 || line[i - 1] == delimiter) && is_outside_real_quote(&qti))
+			// -----------------------------------------------------------------------------------
+			if (	i == 0 		|| 		(	line[i - 1] == separator	&& 		(	is_outside_real_quote(&qti) || is_input_char_real_quote(&qti)	)		)	)
 				count++;
 
-			if (is_input_char_real_quote(&qti))
-				count++;	
+			// -----------------------------------------------------------------------------------
+			
+			
+			
+			// -----------------------------------------------------------------------------------
+			// if (	(i == 0 || line[i - 1] == separator) 	&& 		is_outside_real_quote(&qti)	)
+			// 	count++;
+			// if (is_input_char_real_quote(&qti))
+			// 	count++;	
+			// -----------------------------------------------------------------------------------
 		}
 		// ------------------------------------------------
 		i++;
@@ -77,19 +87,10 @@ char	**split_shell_line(char *line, char separator)
 			start = i;
 		}
 
-
-
-
-
 		if (		(line[i] != separator) 		&& 		(	line[i + 1] == '\0') || line[i + 1] == separator		)
 		{
 			res[j++] = ft_substr(line, start, (i - start) + 1);
 		}
-
-
-
-
-
 
 		i++;
 

@@ -6,7 +6,7 @@
 /*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 16:00:42 by ski               #+#    #+#             */
-/*   Updated: 2022/05/04 16:45:30 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/04 17:24:40 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ typedef struct s_data
 }	t_data;
 /* ************************************************************************** */
 char	**split_shell_line(char *line, char separator);
+int		count_words(char *line, char separator);
+
 
 bool 	is_line_with_correct_quote(char *line);
 // ----------------------------------------------
