@@ -12,9 +12,6 @@
 
 #include "main.h"
 /* ************************************************************************** */
-static bool is_quote_char(char c);
-
-/* ************************************************************************** */
 static int	count_words(char *line, char delimiter)
 {
 	int	i;
@@ -50,7 +47,7 @@ static int	count_words(char *line, char delimiter)
 		// i++;
 
 /* ************************************************************************** */
-char	**split_shell_line(char *line, char delimiter)
+char	**split_shell_line(char *line, char separator)
 {
 	char	**res;
 	int		i;
@@ -63,7 +60,7 @@ char	**split_shell_line(char *line, char delimiter)
 	if (!line)
 		return (NULL);
 
-	res = malloc (sizeof (char *) * (count_words(line, delimiter) + 1));
+	res = malloc (sizeof (char *) * (count_words(line, separator) + 1));
 
 	if (!res)
 		return (NULL);
@@ -74,23 +71,58 @@ char	**split_shell_line(char *line, char delimiter)
 	while (line[i] != '\0')
 	{
 		refresh_quote_info(&qti, line[i]);
-		if (is_input_char_real_quote(&qti) 
-			|| ((line[i] != delimiter) && (i == 0 || (line[i - 1] == delimiter))))
+		
+		if (		(line[i] != separator) 		&& 		(	i == 0 || line[i - 1] == separator	)		)
+		{
+
 			start = i;
-		if ((line[i] != delimiter) && ((line[i + 1] == '\0') || (line[i + 1] == delimiter)))
+		}
+
+
+
+
+
+		if ((line[i] != separator) && ((line[i + 1] == '\0') || (line[i + 1] == separator)))
 			res[j++] = ft_substr(line, start, (i - start) + 1);
+
+
+
+
+
+
 		i++;
+
 	}
 	res[j] = 0;
 	return (res);
 }
 
 /* ************************************************************************** */
-static bool is_quote_char(char c)
-{
-	if (c == '\'' || c == '\"')
-		return (true);
-	return (false);
-}
+// char	**ft_split(char const *str, char c)
+// {
+// 	char	**res;
+// 	int		i;
+// 	int		j;
+// 	int		start;
+
+// 	if (!str)
+// 		return (NULL);
+// 	res = malloc (sizeof (char *) * (count_words(str, c) + 1));
+// 	if (!res)
+// 		return (NULL);
+// 	i = 0;
+// 	j = 0;
+// 	start = 0;
+// 	while (str[i] != '\0')
+// 	{
+// 		if ((str[i] != c) && (i == 0 || (str[i - 1] == c)))
+// 			start = i;
+// 		if ((str[i] != c) && ((str[i + 1] == '\0') || (str[i + 1] == c)))
+// 			res[j++] = ft_substr(str, start, (i - start) + 1);
+// 		i++;
+// 	}
+// 	res[j] = 0;
+// 	return (res);
+// }
 
 /* ************************************************************************** */
