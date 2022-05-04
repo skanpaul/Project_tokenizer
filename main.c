@@ -6,7 +6,7 @@
 /*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 15:59:47 by ski               #+#    #+#             */
-/*   Updated: 2022/05/04 10:22:51 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/04 11:55:28 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void ft_add_history(char *new_line);
 /* ************************************************************************** */
 int main (int argc, char **argv, char **envp)
 {
-	t_data d;
 	char *new_line;
+	char **array;
 	// char **token_array;
 
 	// t_token_type a;
@@ -47,16 +47,17 @@ int main (int argc, char **argv, char **envp)
 		new_line = readline(MSG_PROMPT);
 		ft_add_history(new_line);
 
+		if (is_line_with_correct_quote(new_line) == false)
+			ft_printf("BAD QUOTING\n");
 
-		if (is_pair_quoting_correct(new_line) == false)
-		{
-			ft_printf("\n");
-			ft_printf("FAUX\n");
-			ft_printf("\n");
-		}
+		new_line = chevron_space_maker(new_line);
+		new_line = pipeline_space_maker(new_line);
+		ft_printf("space maker APRES: %s\n", new_line);
+		ft_printf("\n");
 
-
-
+		array = split_shell_line(new_line, ' ');
+		
+		print_array(array);
 			
 							
 		if (ft_strncmp(new_line, "exit", ft_strlen("exit") + 1) == 0)

@@ -6,7 +6,7 @@
 /*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 16:00:42 by ski               #+#    #+#             */
-/*   Updated: 2022/05/04 10:47:12 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/04 11:55:56 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,31 +59,27 @@ typedef struct s_quote_info
 /* ************************************************************************** */
 typedef struct s_data
 {
-	//--------------------------------
-	struct sigaction sa_sigint_main;	// [ctrl-C]
-	struct sigaction sa_sigquit_main;	// [ctrl-\]
-	//--------------------------------
-	
+	int a;	
 }	t_data;
 /* ************************************************************************** */
-bool	is_parent(pid_t fk_pid);
-/* ************************************************************************** */
-void	init_struc_sigaction(t_data *d);
-void	handler_signal_main(int sig_code);
-void	link_signal_main(t_data *d);
-/* ************************************************************************** */
-bool is_pair_quoting_correct(char *line);
+char	**split_shell_line(char const *line, char delimiter);
 
-void init_quote_info(t_quote_info *qti);
-void refresh_quote_info(t_quote_info *qti, char actual_char);
+bool 	is_line_with_correct_quote(char *line);
+// ----------------------------------------------
+void	init_quote_info(t_quote_info *qti);
+void	refresh_quote_info(t_quote_info *qti, char actual_char);
+bool	is_char_in_real_quote(t_quote_info *qti);
+bool	is_char_out_real_quote(t_quote_info *qti);
+bool	is_good_number_of_real_quote(t_quote_info *qti);
+// ----------------------------------------------
 
 char *chevron_space_maker(char *line);
 char *pipeline_space_maker(char *line);
-
+// ----------------------------------------------
 char **tokenizer(char *line);
 void free_array(char **array);
 void print_array(char **array);
-
+// ----------------------------------------------
 
 /* ************************************************************************** */
 #endif

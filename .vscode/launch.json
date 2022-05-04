@@ -17,7 +17,7 @@
 			"cwd": "/Users/ski/Documents/8_Experimentation/Project_tokenizer",
 			// "cwd": "${fileDirname}",
 			"environment": [],
-			"externalConsole": false,
+			"externalConsole": true,
 			"MIMode": "lldb",
 			"preLaunchTask": "C/C++: clang build active file"
 		}

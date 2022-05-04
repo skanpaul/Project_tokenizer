@@ -6,17 +6,14 @@
 /*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 09:27:20 by ski               #+#    #+#             */
-/*   Updated: 2022/05/04 10:47:47 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/04 11:07:10 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
 /* ************************************************************************** */
-static bool is_pair(int n);
-
-/* ************************************************************************** */
-bool is_pair_quoting_correct(char *line)
+bool is_line_with_correct_quote(char *line)
 {
 	int i;	
 	t_quote_info	qti;
@@ -30,19 +27,10 @@ bool is_pair_quoting_correct(char *line)
 		i++;
 	}
 	
-	if (is_pair(qti.cnt_real_quote))
+	if (is_good_number_of_real_quote(&qti))
 		return (true);
 		
 	return (false);
 }
 
-/* ************************************************************************** */static bool is_pair(int n)
-{
-	int reste;
-
-	reste = n % 2;
-	if (reste == 0)
-		return (true);
-	return (false);	
-}
 /* ************************************************************************** */

@@ -6,7 +6,7 @@
 /*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 06:15:33 by sorakann          #+#    #+#             */
-/*   Updated: 2022/05/03 15:13:22 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/04 11:36:20 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,16 @@ static char	*insert_space_after_actual_pos(char *line, int *actual_position);
 char *chevron_space_maker(char *line)
 {
     int i;
+	t_quote_info qti;
 
-	bool in_double_quote;
-	bool in_single_quote;
-	bool in_quote;
-
-	in_quote = false;
-	in_single_quote = false;
-	in_single_quote = false;
+	init_quote_info(&qti);
 
 	i = 0;
     while (line[i] != 0)
 	{
-		// if ()
+		refresh_quote_info(&qti, line[i]);
 		
-		if (is_chevron(line[i]))
+		if (is_chevron(line[i]) && is_char_out_real_quote(&qti))
 		{
 			if (is_prev_char_correct(line, i) == false)
 				line = insert_space_before_actual_pos(line, &i);
