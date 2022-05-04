@@ -6,7 +6,7 @@
 /*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 10:28:17 by ski               #+#    #+#             */
-/*   Updated: 2022/05/04 15:50:10 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/04 16:12:20 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	init_quote_info(t_quote_info *qti)
 	qti->inside = false;
 	qti->flag_input_char = false;
 	qti->flag_output_char = false;
+	qti->memo_inside = false;
 }
 
 /* ************************************************************************** */
@@ -31,6 +32,11 @@ void	refresh_quote_info(t_quote_info *qti, char actual_char)
 {
 	qti->flag_input_char = false;
 	qti->flag_output_char = false;
+	if (qti->memo_inside == true)
+	{
+		qti->inside = false;
+		qti->memo_inside = false;
+	}
 	if (is_quote_char(actual_char))
 	{
 		if (qti->inside == false)
@@ -42,14 +48,15 @@ void	refresh_quote_info(t_quote_info *qti, char actual_char)
 		}
 		else
 		{
-			if (qti->mem_real_quote == actual_char)
+			if(qti->mem_real_quote == actual_char)
 			{
 				qti->mem_real_quote = '\0';
 				qti->cnt_real_quote++;
-				qti->inside = false;
+				// qti->inside = false;
+				qti->memo_inside = true;
 				qti->flag_output_char = true;
-			}				
-		}			
+			}			
+		} 
 	}
 }
 	// if (!qti->flag_output_char && !qti->flag_input_char)

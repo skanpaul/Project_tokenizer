@@ -6,7 +6,7 @@
 /*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 15:59:47 by ski               #+#    #+#             */
-/*   Updated: 2022/05/04 15:05:49 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/04 16:13:03 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,26 +20,6 @@ int main (int argc, char **argv, char **envp)
 {
 	char *new_line;
 	char **array;
-	// char **token_array;
-
-	// t_token_type a;
-
-	// a = cmd;
-	
-	// new_line = NULL;
-	// token_array = NULL;
-
-	// new_line = ft_strdup("salut << ?");
-	// new_line = chevron_space_maker(new_line);
-	// new_line = pipeline_space_maker(new_line);
-
-	// token_array = tokenizer(new_line);
-
-	// print_array(token_array);
-	// if (token_array)
-	// 	free_array(token_array);
-	// token_array = NULL;		
-	// return (0);
 	
 	// ---------------------------------------------------
 	while (1)
@@ -48,16 +28,16 @@ int main (int argc, char **argv, char **envp)
 		ft_add_history(new_line);
 
 		if (is_line_with_correct_quote(new_line) == false)
-			ft_printf("\nBAD QUOTING\n");
+			ft_printf("\n ---------- !!! BAD QUOTING !!! ---------- \n");
 
 		new_line = chevron_space_maker(new_line);
 		new_line = pipeline_space_maker(new_line);
 		ft_printf("space maker APRES: %s\n", new_line);
 		ft_printf("\n");
 
-		array = split_shell_line(new_line, ' ');
+		// array = split_shell_line(new_line, ' ');
 		
-		print_array(array);
+		// print_array(array);
 			
 							
 		if (ft_strncmp(new_line, "exit", ft_strlen("exit") + 1) == 0)
