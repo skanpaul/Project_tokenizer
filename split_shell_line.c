@@ -27,34 +27,16 @@ int	count_words(char *line, char separator)
 	{
 		refresh_quote_info(&qti, line[i]);
 
-		// ------------------------------------------------
 		if (line[i] != separator)
 		{
-			// -----------------------------------------------------------------------------------
 			if (	i == 0 		|| 		(	line[i - 1] == separator	&& 		(	is_outside_real_quote(&qti) || is_input_char_real_quote(&qti)	)		)	)
 				count++;
-
-			// -----------------------------------------------------------------------------------
-			
-			
-			
-			// -----------------------------------------------------------------------------------
-			// if (	(i == 0 || line[i - 1] == separator) 	&& 		is_outside_real_quote(&qti)	)
-			// 	count++;
-			// if (is_input_char_real_quote(&qti))
-			// 	count++;	
-			// -----------------------------------------------------------------------------------
 		}
-		// ------------------------------------------------
+
 		i++;
-		// ------------------------------------------------
 	}
 	return (count);
 }
-
-		// if ((str[i] != c) && ((i == 0) || (str[i - 1] == c)))
-		// 	count++;
-		// i++;
 
 /* ************************************************************************** */
 char	**split_shell_line(char *line, char separator)
@@ -82,15 +64,30 @@ char	**split_shell_line(char *line, char separator)
 	{
 		refresh_quote_info(&qti, line[i]);
 		
-		if (		(line[i] != separator) 		&& 		(	i == 0 || line[i - 1] == separator	)		)
+		if (	line[i] != separator	)
 		{
-			start = i;
+			if (	i == 0 		|| 		(	line[i - 1] == separator	&& 		(	is_outside_real_quote(&qti) || is_input_char_real_quote(&qti)	)		)	)
+				start = i;
+		}
+		// ---------------------------------------------------------------------------------------------------	
+		// if (		(line[i] != separator) 		&& 		(	i == 0 || line[i - 1] == separator	)		)
+		// {
+		// 	start = i;
+		// }
+		// ---------------------------------------------------------------------------------------------------	
+
+		if 	(	line[i] != separator) 		
+		{
+			if 	(	line[i + 1] == '\0' 	|| 		line[i + 1] == separator				)
+			{
+				res[j++] = ft_substr(line, start, (i - start) + 1);
+			}		
 		}
 
-		if (		(line[i] != separator) 		&& 		(	line[i + 1] == '\0') || line[i + 1] == separator		)
-		{
-			res[j++] = ft_substr(line, start, (i - start) + 1);
-		}
+		// ---------------------------------------------------------------------------------------------------	
+		// if (	(	line[i] != separator) 		&& 		(	(line[i + 1] == '\0') 	|| 	(line[i + 1] == separator)		)		)
+		// 	res[j++] = ft_substr(line, start, (i - start) + 1);
+		// ---------------------------------------------------------------------------------------------------	
 
 		i++;
 
