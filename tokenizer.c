@@ -6,7 +6,7 @@
 /*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 18:19:52 by ski               #+#    #+#             */
-/*   Updated: 2022/05/03 13:35:47 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/03 14:27:38 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,12 @@ char **tokenizer(char *line)
 	//---------------------------------------------------------------------
 	// splitter selon>
 	// 1) whitespace
-	// 2) double quote
-	// 3) single quote
-	// fonction annexe
-	// a) space maker pour chevron
-
+	// 2) chevron
+	// 3) 
+	
+	
 	return token_array;		
 }
-
 
 /* ************************************************************************** */
 static void add_token(char ***token_array, char *token)

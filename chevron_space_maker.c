@@ -6,7 +6,7 @@
 /*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 06:15:33 by sorakann          #+#    #+#             */
-/*   Updated: 2022/05/03 11:05:38 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/03 15:13:22 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,19 @@ char *chevron_space_maker(char *line)
 {
     int i;
 
+	bool in_double_quote;
+	bool in_single_quote;
+	bool in_quote;
+
+	in_quote = false;
+	in_single_quote = false;
+	in_single_quote = false;
+
 	i = 0;
     while (line[i] != 0)
 	{
+		// if ()
+		
 		if (is_chevron(line[i]))
 		{
 			if (is_prev_char_correct(line, i) == false)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
+/*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 13:51:00 by gudias            #+#    #+#             */
-/*   Updated: 2022/01/14 16:51:49 by gudias           ###   ########.fr       */
+/*   Updated: 2022/05/04 10:15:59 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_flags
 
 int		ft_printf(const char *str, ...);
 
-int		ft_print(va_list ap, t_flags *flags);
+// int		ft_print(va_list ap, t_flags *flags);
 
 int		ft_format_c(va_list ap, t_flags *flags);
 int		ft_format_s(va_list ap, t_flags *flags);

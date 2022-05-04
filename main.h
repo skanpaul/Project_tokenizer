@@ -6,7 +6,7 @@
 /*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 16:00:42 by ski               #+#    #+#             */
-/*   Updated: 2022/05/03 11:42:43 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/04 10:15:03 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,17 @@
 # define MSG_MAIN_SIGINT		"parent receive SIGINT [ctrl-C]\n"
 # define MSG_MAIN_SIGQUIT		"parent receive SIGQUIT [ctrl-\\]\n"
 /* ************************************************************************** */
+typedef enum e_token_type
+{
+	cmd,
+	file,
+	chevron_in,
+	chevron_out,
+	pipeline, 
+	arg	
+} t_token_type;
+
+/* ************************************************************************** */
 typedef struct s_data
 {
 	//--------------------------------
@@ -52,6 +63,8 @@ void	init_struc_sigaction(t_data *d);
 void	handler_signal_main(int sig_code);
 void	link_signal_main(t_data *d);
 /* ************************************************************************** */
+bool is_pair_quoting_correct(char *line);
+
 char *chevron_space_maker(char *line);
 char *pipeline_space_maker(char *line);
 
