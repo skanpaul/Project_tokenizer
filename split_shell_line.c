@@ -45,6 +45,7 @@ char	**split_shell_line(char *line, char separator)
 	int		i;
 	int		j;
 	int		start;
+	int		qty;
 	t_quote_info qti;
 
 	init_quote_info(&qti);
@@ -78,9 +79,10 @@ char	**split_shell_line(char *line, char separator)
 
 		if 	(	line[i] != separator) 		
 		{
-			if 	(	line[i + 1] == '\0' 	|| 		line[i + 1] == separator				)
+			if 	(	line[i + 1] == '\0' 	|| 		(	line[i + 1] == separator 	&& 		(	is_outside_real_quote(&qti) || is_output_char_real_quote(&qti)		)		)		)
 			{
-				res[j++] = ft_substr(line, start, (i - start) + 1);
+				qty = (i - start) + 1;
+				res[j++] = ft_substr(line, start, qty);
 			}		
 		}
 

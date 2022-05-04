@@ -6,7 +6,7 @@
 /*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 15:59:47 by ski               #+#    #+#             */
-/*   Updated: 2022/05/04 17:50:50 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/04 18:34:54 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,9 @@ int main (int argc, char **argv, char **envp)
 		cnt_w = count_words(new_line, ' ');
 		ft_printf("count word: [%d]\n", cnt_w);
 
-		// array = split_shell_line(new_line, ' ');		
-		// print_array(array);
+		array = split_shell_line(new_line, ' ');		
+		print_array(array);
+		free_array(array);
 			
 							
 		if (ft_strncmp(new_line, "exit", ft_strlen("exit") + 1) == 0)
