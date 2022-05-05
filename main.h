@@ -6,7 +6,7 @@
 /*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 16:00:42 by ski               #+#    #+#             */
-/*   Updated: 2022/05/04 17:24:40 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/05 08:13:56 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,11 @@ typedef enum e_token_type
 /* ************************************************************************** */
 typedef struct s_quote_info
 {
-	int		cnt_real_quote;
-	char	mem_real_quote;
-	bool	inside;
-	bool	flag_input_char;
-	bool	flag_output_char;
+	int		cnt_char_realquote;
+	char	last_char_realquote;
+	bool	flag_inside_realquote;
+	bool	flag_entering_realquote;
+	bool	flag_exiting_realquote;
 	
 }	t_quote_info;
 

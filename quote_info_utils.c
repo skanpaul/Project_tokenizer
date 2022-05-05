@@ -6,7 +6,7 @@
 /*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 10:28:17 by ski               #+#    #+#             */
-/*   Updated: 2022/05/04 16:23:13 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/05 08:14:25 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,51 +18,45 @@ static bool	is_quote_char(char c);
 // Need: variable of type [ t_quote_info ]
 void	init_quote_info(t_quote_info *qti)
 {
-	qti->cnt_real_quote = 0;
-	qti->mem_real_quote = '\0';
-	qti->inside = false;
-	qti->flag_input_char = false;
-	qti->flag_output_char = false;
+	qti->cnt_char_realquote = 0;
+	qti->last_char_realquote = '\0';
+	qti->flag_inside_realquote = false;
+	qti->flag_entering_realquote = false;
+	qti->flag_exiting_realquote = false;
 }
 
 /* ************************************************************************** */
 // To use under the while (...) statement ONLY once
 void	refresh_quote_info(t_quote_info *qti, char actual_char)
 {
-	qti->flag_input_char = false;
-	if (qti->flag_output_char == true)
+	qti->flag_entering_realquote = false;
+	if (qti->flag_exiting_realquote == true)
 		init_quote_info(qti);
 	if (is_quote_char(actual_char))
 	{
-		if (qti->inside == false)
+		if (qti->flag_inside_realquote == false)
 		{
-			qti->mem_real_quote = actual_char;
-			qti->cnt_real_quote++;
-			qti->inside = true;
-			qti->flag_input_char = true;
+			qti->last_char_realquote = actual_char;
+			qti->cnt_char_realquote++;
+			qti->flag_inside_realquote = true;
+			qti->flag_entering_realquote = true;
 		}
 		else
 		{
-			if (qti->mem_real_quote == actual_char)
+			if (qti->last_char_realquote == actual_char)
 			{
-				qti->mem_real_quote = '\0';
-				qti->cnt_real_quote++;
-				qti->flag_output_char = true;
+				qti->last_char_realquote = '\0';
+				qti->cnt_char_realquote++;
+				qti->flag_exiting_realquote = true;
 			}			
 		}
 	}
 }
-	// if (!qti->flag_output_char && !qti->flag_input_char)
-	// 	ft_printf("[%c]\n", actual_char);
-	// if (qti->flag_input_char)
-	// 	ft_printf("[%c] INPUT QUOTE\n", actual_char);
-	// if (qti->flag_output_char)
-	// 	ft_printf("[%c] OUTPUT QUOTE\n", actual_char);
 
 /* ************************************************************************** */
 bool	is_input_char_real_quote(t_quote_info *qti)
 {
-	if (qti->flag_input_char)
+	if (qti->flag_entering_realquote)
 		return (true);
 	return (false);
 }
@@ -70,7 +64,7 @@ bool	is_input_char_real_quote(t_quote_info *qti)
 /* ************************************************************************** */
 bool	is_output_char_real_quote(t_quote_info *qti)
 {
-	if (qti->flag_output_char)
+	if (qti->flag_exiting_realquote)
 		return (true);
 	return (false);
 }
@@ -79,7 +73,7 @@ bool	is_output_char_real_quote(t_quote_info *qti)
 // To used with: [ refresh_info_quote() ]
 bool	is_good_number_of_real_quote(t_quote_info *qti)
 {
-	if (qti->cnt_real_quote % 2 == 0)
+	if (qti->cnt_char_realquote % 2 == 0)
 		return (true);
 	return (false);
 }
@@ -88,7 +82,7 @@ bool	is_good_number_of_real_quote(t_quote_info *qti)
 // To used in the same scope than: [ refresh_info_quote() ]
 bool	is_inside_real_quote(t_quote_info *qti)
 {
-	if (qti->inside)
+	if (qti->flag_inside_realquote)
 		return (true);
 	return (false);
 }
@@ -97,7 +91,7 @@ bool	is_inside_real_quote(t_quote_info *qti)
 // To used in the same scope than: [ refresh_info_quote() ]
 bool	is_outside_real_quote(t_quote_info *qti)
 {
-	if (qti->inside)
+	if (qti->flag_inside_realquote)
 		return (false);
 	return (true);
 }
