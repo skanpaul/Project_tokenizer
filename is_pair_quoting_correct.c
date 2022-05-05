@@ -6,7 +6,7 @@
 /*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 09:27:20 by ski               #+#    #+#             */
-/*   Updated: 2022/05/04 11:07:10 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/05 08:19:44 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ bool is_line_with_correct_quote(char *line)
 		i++;
 	}
 	
-	if (is_good_number_of_real_quote(&qti))
+	if (is_good_number_of_realquote(&qti))
 		return (true);
 		
 	return (false);

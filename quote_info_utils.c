@@ -6,7 +6,7 @@
 /*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 10:28:17 by ski               #+#    #+#             */
-/*   Updated: 2022/05/05 08:14:25 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/05 08:19:47 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	refresh_quote_info(t_quote_info *qti, char actual_char)
 }
 
 /* ************************************************************************** */
-bool	is_input_char_real_quote(t_quote_info *qti)
+bool	is_entering_realquote(t_quote_info *qti)
 {
 	if (qti->flag_entering_realquote)
 		return (true);
@@ -62,7 +62,7 @@ bool	is_input_char_real_quote(t_quote_info *qti)
 }
 
 /* ************************************************************************** */
-bool	is_output_char_real_quote(t_quote_info *qti)
+bool	is_exiting_realquote(t_quote_info *qti)
 {
 	if (qti->flag_exiting_realquote)
 		return (true);
@@ -71,7 +71,7 @@ bool	is_output_char_real_quote(t_quote_info *qti)
 
 /* ************************************************************************** */
 // To used with: [ refresh_info_quote() ]
-bool	is_good_number_of_real_quote(t_quote_info *qti)
+bool	is_good_number_of_realquote(t_quote_info *qti)
 {
 	if (qti->cnt_char_realquote % 2 == 0)
 		return (true);
@@ -80,7 +80,7 @@ bool	is_good_number_of_real_quote(t_quote_info *qti)
 
 /* ************************************************************************** */
 // To used in the same scope than: [ refresh_info_quote() ]
-bool	is_inside_real_quote(t_quote_info *qti)
+bool	is_inside_realquote(t_quote_info *qti)
 {
 	if (qti->flag_inside_realquote)
 		return (true);
@@ -89,7 +89,7 @@ bool	is_inside_real_quote(t_quote_info *qti)
 
 /* ************************************************************************** */
 // To used in the same scope than: [ refresh_info_quote() ]
-bool	is_outside_real_quote(t_quote_info *qti)
+bool	is_outside_realquote(t_quote_info *qti)
 {
 	if (qti->flag_inside_realquote)
 		return (false);

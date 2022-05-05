@@ -29,7 +29,7 @@ int	count_words(char *line, char separator)
 
 		if (line[i] != separator)
 		{
-			if (	i == 0 		|| 		(	line[i - 1] == separator	&& 		(	is_outside_real_quote(&qti) || is_input_char_real_quote(&qti)	)		)	)
+			if (	i == 0 		|| 		(	line[i - 1] == separator	&& 		(	is_outside_realquote(&qti) || is_entering_realquote(&qti)	)		)	)
 				count++;
 		}
 
@@ -63,36 +63,27 @@ char	**split_shell_line(char *line, char separator)
 	start = 0;
 	while (line[i] != '\0')
 	{
+		// ------------------------------------------------------------------
 		refresh_quote_info(&qti, line[i]);
 		
+		// ------------------------------------------------------------------
 		if (	line[i] != separator	)
 		{
-			if (	i == 0 		|| 		(	line[i - 1] == separator	&& 		(	is_outside_real_quote(&qti) || is_input_char_real_quote(&qti)	)		)	)
+			if (	i == 0 		|| 		(	line[i - 1] == separator	&& 		(	is_outside_realquote(&qti) || is_entering_realquote(&qti)	)		)	)
 				start = i;
 		}
-		// ---------------------------------------------------------------------------------------------------	
-		// if (		(line[i] != separator) 		&& 		(	i == 0 || line[i - 1] == separator	)		)
-		// {
-		// 	start = i;
-		// }
-		// ---------------------------------------------------------------------------------------------------	
-
+		// ------------------------------------------------------------------
 		if 	(	line[i] != separator) 		
 		{
-			if 	(	line[i + 1] == '\0' 	|| 		(	line[i + 1] == separator 	&& 		(	is_outside_real_quote(&qti) || is_output_char_real_quote(&qti)		)		)		)
+			if 	(	line[i + 1] == '\0' 	|| 		(	line[i + 1] == separator 	&& 		(	is_outside_realquote(&qti) || is_exiting_realquote(&qti)		)		)		)
 			{
 				qty = (i - start) + 1;
 				res[j++] = ft_substr(line, start, qty);
 			}		
 		}
-
-		// ---------------------------------------------------------------------------------------------------	
-		// if (	(	line[i] != separator) 		&& 		(	(line[i + 1] == '\0') 	|| 	(line[i + 1] == separator)		)		)
-		// 	res[j++] = ft_substr(line, start, (i - start) + 1);
-		// ---------------------------------------------------------------------------------------------------	
-
+		// ------------------------------------------------------------------
 		i++;
-
+		// ------------------------------------------------------------------
 	}
 	res[j] = 0;
 	return (res);

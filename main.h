@@ -6,7 +6,7 @@
 /*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 16:00:42 by ski               #+#    #+#             */
-/*   Updated: 2022/05/05 08:13:56 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/05 08:19:34 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,11 @@ bool 	is_line_with_correct_quote(char *line);
 // ----------------------------------------------
 void	init_quote_info(t_quote_info *qti);
 void	refresh_quote_info(t_quote_info *qti, char actual_char);
-bool	is_inside_real_quote(t_quote_info *qti);
-bool	is_outside_real_quote(t_quote_info *qti);
-bool	is_good_number_of_real_quote(t_quote_info *qti);
-bool	is_input_char_real_quote(t_quote_info *qti);
-bool	is_output_char_real_quote(t_quote_info *qti);
+bool	is_good_number_of_realquote(t_quote_info *qti);
+bool	is_inside_realquote(t_quote_info *qti);
+bool	is_outside_realquote(t_quote_info *qti);
+bool	is_entering_realquote(t_quote_info *qti);
+bool	is_exiting_realquote(t_quote_info *qti);
 // ----------------------------------------------
 
 char *chevron_space_maker(char *line);
