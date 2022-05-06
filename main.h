@@ -6,7 +6,7 @@
 /*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 16:00:42 by ski               #+#    #+#             */
-/*   Updated: 2022/05/06 11:05:57 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/06 11:40:30 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ typedef struct s_data
 /* ************************************************************************** */
 char	**split_shell_line(char *line, char separator);
 int		count_words(char *line, char separator);
+char	*translate_dollar(char *str, t_vars *vars);
 
 
 bool 	is_line_with_correct_quote(char *line);
@@ -100,6 +101,9 @@ bool	is_inside_realquote(t_quote_info *qti);
 bool	is_outside_realquote(t_quote_info *qti);
 bool	is_entering_realquote(t_quote_info *qti);
 bool	is_exiting_realquote(t_quote_info *qti);
+bool	is_inside_double_realquote(t_quote_info *qti);
+bool	is_inside_single_realquote(t_quote_info *qti);
+
 // ----------------------------------------------
 
 char *chevron_space_maker(char *line);
@@ -109,6 +113,8 @@ char **tokenizer(char *line);
 void free_array(char **array);
 void print_array(char **array);
 // ----------------------------------------------
+
+bool	does_var_exist(t_env *var_head, char *var_name);
 
 /* ************************************************************************** */
 #endif

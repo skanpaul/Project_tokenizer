@@ -6,50 +6,79 @@
 /*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 14:22:02 by ski               #+#    #+#             */
-/*   Updated: 2022/05/06 11:07:35 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/06 12:00:19 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 /* ************************************************************************** */
-static bool is_char_for_dolvar_name(char c);
+static bool	is_char_for_dolvar_name(char c);
+static bool	is_vardol(char *str, int i_dollars);
+static int	get_end_pos_vardol(char *str, int start_pos);
 
 /* ************************************************************************** */
-void translate_dollar(char *str, t_vars *vars)
+char	*translate_dollar(char *str, t_vars *vars)
 {
-	int i;
-	t_quote_info qti;
-	
-	(void)vars;
+	int				i;
+	t_quote_info	qti;
 
+	(void)vars;
 	init_quote_info(&qti);
-	
 	i = 0;
 	while (str[i] != 0)
 	{
 		refresh_quote_info(&qti, str[i]);
-
+		// ----------------------------------------------------
 		if (str[i] == '$')
 		{
-			if ()
-
-
-			
+			if (is_inside_single_realquote(&qti) == false)
+			{
+				if (is_vardol(str, i))
+				{
+					// subsitute var dol
+				}
+			}
 		}
-
-
-		// code manquant
-		
-		
-		
+		// ----------------------------------------------------
 		i++;
 	}
-
+	return (str);
 }
 
+/* ************************************************************************** */
+static char	*substitute_vardol(char *str, int *star_pos, t_vars *vars)
+{
+	int		i;	
+	int		end_pos;
+	int		qty;
+	char	*buf_1;
+	char	*buf_2;
+
+	end_pos = get_end_pos_vardol(str, *star_pos);
+	qty = *star_pos;
+	buf_1 = ft_substr(str, 0, qty);
+	qty = ft_strlen(str) - end_pos - 1;
+	buf_2 = ft_substr(str, end_pos + 1, qty);
+	if (does_var_exist(vars->env, &str[*star_pos + 1]))
+	{
+		(void)str;
+	}
+	return (str);
+}
 
 /* ************************************************************************** */
-static bool is_char_for_dolvar_name(char c)
+static int	get_end_pos_vardol(char *str, int start_pos)
+{
+	int	i;
+
+	i = 0;
+	while (is_char_for_dolvar_name(str[i + 1]))
+		i++;
+	return (i);
+}
+
+/* ************************************************************************** */
+static bool	is_char_for_dolvar_name(char c)
 {
 	if (ft_isalnum(c) || c == '_')
 		return (true);
@@ -57,10 +86,11 @@ static bool is_char_for_dolvar_name(char c)
 }
 
 /* ************************************************************************** */
-bool is_dollar_variable(char *ptr_dollar)
+static bool	is_vardol(char *str, int i_dollars)
 {
-	if (ptr_dollar[1] != ' ' || ptr_dollar[1] != '\'' || ptr_dollar[1] != '\"')
-		return (false);
-	return (true);
+	if (is_char_for_dolvar_name(str[i_dollars + 1]))
+		return (true);
+	return (false);
 }
+
 /* ************************************************************************** */
