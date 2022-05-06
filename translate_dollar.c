@@ -6,7 +6,7 @@
 /*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 14:22:02 by ski               #+#    #+#             */
-/*   Updated: 2022/05/06 12:00:19 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/06 12:13:34 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,16 +53,39 @@ static char	*substitute_vardol(char *str, int *star_pos, t_vars *vars)
 	int		qty;
 	char	*buf_1;
 	char	*buf_2;
+	char	*var_data;
 
 	end_pos = get_end_pos_vardol(str, *star_pos);
+	
 	qty = *star_pos;
 	buf_1 = ft_substr(str, 0, qty);
+	
 	qty = ft_strlen(str) - end_pos - 1;
 	buf_2 = ft_substr(str, end_pos + 1, qty);
+
+	ft_free_null((void**)&str);
+	
+	var_data = NULL;
+	
 	if (does_var_exist(vars->env, &str[*star_pos + 1]))
+		var_data = get_var(vars->env, &str[*star_pos + 1])->data;	
+	else if (does_var_exist(vars->loc, &str[*star_pos + 1]))
+		var_data = get_var(vars->env, &str[*star_pos + 1])->data;
+	else
 	{
-		(void)str;
+		// startpos - 1
 	}
+
+	str = ft_strjoin(buf_1, var_data);
+	ft_free_null((void**)&buf_1);
+
+	buf_1 = str;
+	
+	str = ft_strjoin(buf_1, buf_2);
+	ft_free_null((void**)&buf_1);
+	ft_free_null((void**)&buf_2);
+
+	
 	return (str);
 }
 

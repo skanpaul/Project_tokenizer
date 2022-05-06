@@ -1,7 +1,8 @@
 {
     "files.associations": {
 		"libft.h": "c",
-		"sstream": "c"
+		"sstream": "c",
+		"main.h": "c"
 	},
 	"explorer.sortOrder": "type"
 }

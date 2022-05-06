@@ -6,7 +6,7 @@
 /*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 16:00:42 by ski               #+#    #+#             */
-/*   Updated: 2022/05/06 11:40:30 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/06 12:04:48 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,19 @@ void free_array(char **array);
 void print_array(char **array);
 // ----------------------------------------------
 
+void ft_free_null(void **ptr);
+
 bool	does_var_exist(t_env *var_head, char *var_name);
+
+// -------------------------------------------------- linklist_utils.c
+void	print_var(t_env *var_head);
+t_env	*get_var(t_env *var_head, char *var_name);
+bool	does_var_exist(t_env *var_head, char *var_name);
+void	update_var(t_env **var_head, char *var_name, char *new_data);
+void	add_var(t_env **var_head, char *name, char *data);
+void	remove_var(t_env **var_head, char *var_name);
+int		size_var_list(t_env *var_head);
+void	free_var_list(t_env **var_head);
 
 /* ************************************************************************** */
 #endif
