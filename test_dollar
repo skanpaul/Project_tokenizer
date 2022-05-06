@@ -71,3 +71,35 @@ prompt> bobo_'$AA "$AA"'
 space making:            bobo_'$AA "$AA"'
 translating dollar:      bobo_$AA $AA
 -------------------------------------------------> FAUX
+
+prompt> $
+space making:            $
+translating dollar:      $
+
+prompt> $$
+space making:            $$
+translating dollar:      $$
+
+prompt> $aa$BB
+space making:            $aa$BB
+translating dollar:    
+
+prompt> "AA"
+space making:            "AA"
+translating dollar:      AA
+
+prompt> "'AA'"
+space making:            "'AA'"
+translating dollar:      'AA'
+
+prompt> "'$AA'"
+space making:            "'$AA'"
+translating dollar:      'ski'
+
+prompt> "'$BB'"
+space making:            "'$BB'"
+translating dollar:      ''
+
+prompt> "'$BB'"$AA
+space making:            "'$BB'"$AA
+translating dollar:      ''ski
