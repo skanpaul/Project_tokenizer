@@ -6,7 +6,7 @@
 /*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 14:22:02 by ski               #+#    #+#             */
-/*   Updated: 2022/05/06 11:04:58 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/06 11:07:35 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,13 @@ void translate_dollar(char *str, t_vars *vars)
 	{
 		refresh_quote_info(&qti, str[i]);
 
+		if (str[i] == '$')
+		{
+			if ()
+
+
+			
+		}
 
 
 		// code manquant
