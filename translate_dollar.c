@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   translate_dollar.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sorakann <sorakann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 14:22:02 by ski               #+#    #+#             */
-/*   Updated: 2022/05/06 15:30:16 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/06 21:21:52 by sorakann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ static char	*substitute_vardol(char *str, int *start_pos, t_vars *vars)
 	char	*buf_1;
 	char	*buf_2;
 	char	*var_data;
+	char	*vardol_name;
 
 	//-----------------------------------------------
 	i = 0;
@@ -65,9 +66,13 @@ static char	*substitute_vardol(char *str, int *start_pos, t_vars *vars)
 	buf_1 = NULL;
 	buf_2 = NULL;
 	var_data = NULL;	
+	vardol_name = NULL;
 	//-----------------------------------------------
 
 	end_pos = get_end_pos_vardol(str, *start_pos);
+
+	qty = end_pos - *start_pos;
+	vardol_name = ft_substr(str, *start_pos + 1, qty);
 	
 	qty = *start_pos;
 	buf_1 = ft_substr(str, 0, qty);
@@ -77,10 +82,16 @@ static char	*substitute_vardol(char *str, int *start_pos, t_vars *vars)
 	
 	var_data = NULL;
 	
-	if (does_var_exist(vars->env, &str[*start_pos + 1]))
-		var_data = get_var(vars->env, &str[*start_pos + 1])->data;	
-	else if (does_var_exist(vars->loc, &str[*start_pos + 1]))
-		var_data = get_var(vars->loc, &str[*start_pos + 1])->data;
+	if (does_var_exist(vars->env, vardol_name))
+	{
+		var_data = get_var(vars->env, vardol_name)->data;		
+		*start_pos = ft_strlen(var_data) - 1;
+	}
+	else if (does_var_exist(vars->loc, vardol_name))
+	{
+		var_data = get_var(vars->loc, vardol_name)->data;
+		*start_pos = ft_strlen(var_data) - 1;
+	}
 	else
 	{
 		*start_pos = *start_pos - 1;
@@ -93,19 +104,23 @@ static char	*substitute_vardol(char *str, int *start_pos, t_vars *vars)
 	buf_1 = str;
 	
 	str = ft_strjoin(buf_1, buf_2);
+
+	
 	ft_free_null((void**)&buf_1);
 	ft_free_null((void**)&buf_2);
+	ft_free_null((void**)&vardol_name);
 
 	
 	return (str);
 }
 
 /* ************************************************************************** */
+
 static int	get_end_pos_vardol(char *str, int start_pos)
 {
 	int	i;
 
-	i = 0;
+	i = start_pos;
 	while (is_char_for_dolvar_name(str[i + 1]))
 		i++;
 	return (i);

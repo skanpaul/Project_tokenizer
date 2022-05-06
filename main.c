@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sorakann <sorakann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 15:59:47 by ski               #+#    #+#             */
-/*   Updated: 2022/05/06 13:40:02 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/06 21:08:54 by sorakann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ int main (int argc, char **argv, char **envp)
 	// ---------------------------------------------------
 	while (1)
 	{
-		new_line = readline(MSG_PROMPT);
+		// new_line = readline(MSG_PROMPT);
+		new_line = ft_strdup("$AA$AA");
 		ft_add_history(new_line);
 
 		if (is_line_with_correct_quote(new_line) == false)
@@ -56,6 +57,7 @@ int main (int argc, char **argv, char **envp)
 
 		new_line = translate_dollar(new_line, &vars);
 		ft_printf("translating dollar:\t %s\n", new_line);
+		ft_printf("\n");
 		
 			
 		// ft_printf("\n");
