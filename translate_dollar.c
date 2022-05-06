@@ -6,7 +6,7 @@
 /*   By: sorakann <sorakann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 14:22:02 by ski               #+#    #+#             */
-/*   Updated: 2022/05/06 21:21:52 by sorakann         ###   ########.fr       */
+/*   Updated: 2022/05/06 21:27:18 by sorakann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,30 +72,21 @@ static char	*substitute_vardol(char *str, int *start_pos, t_vars *vars)
 	end_pos = get_end_pos_vardol(str, *start_pos);
 
 	qty = end_pos - *start_pos;
-	vardol_name = ft_substr(str, *start_pos + 1, qty);
-	
+	vardol_name = ft_substr(str, *start_pos + 1, qty);	
 	qty = *start_pos;
-	buf_1 = ft_substr(str, 0, qty);
-	
+	buf_1 = ft_substr(str, 0, qty);	
 	qty = ft_strlen(str) - end_pos - 1;
 	buf_2 = ft_substr(str, end_pos + 1, qty);
 	
 	var_data = NULL;
 	
 	if (does_var_exist(vars->env, vardol_name))
-	{
 		var_data = get_var(vars->env, vardol_name)->data;		
-		*start_pos = ft_strlen(var_data) - 1;
-	}
-	else if (does_var_exist(vars->loc, vardol_name))
-	{
+	if (does_var_exist(vars->loc, vardol_name))
 		var_data = get_var(vars->loc, vardol_name)->data;
-		*start_pos = ft_strlen(var_data) - 1;
-	}
-	else
-	{
-		*start_pos = *start_pos - 1;
-	}
+
+	*start_pos = *start_pos + ft_strlen(var_data) - 1;
+	
 	ft_free_null((void**)&str);
 	
 	str = ft_strjoin(buf_1, var_data);
