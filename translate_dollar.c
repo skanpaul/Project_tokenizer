@@ -6,7 +6,7 @@
 /*   By: sorakann <sorakann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 14:22:02 by ski               #+#    #+#             */
-/*   Updated: 2022/05/06 21:27:18 by sorakann         ###   ########.fr       */
+/*   Updated: 2022/05/06 23:17:08 by sorakann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static bool	is_char_for_dolvar_name(char c);
 static bool	is_vardol(char *str, int i_dollars);
 static int	get_end_pos_vardol(char *str, int start_pos);
 static char	*substitute_vardol(char *str, int *start_pos, t_vars *vars);
+static char *delete_char(char *str, int *i);
 
 /* ************************************************************************** */
 char	*translate_dollar(char *str, t_vars *vars)
@@ -41,8 +42,35 @@ char	*translate_dollar(char *str, t_vars *vars)
 			}
 		}
 		// ----------------------------------------------------
+		if ((str[i] == '\'' || str[i] == '\"') 
+			&& (is_entering_realquote(&qti) || is_exiting_realquote(&qti)))
+			str = delete_char(str, &i);	
 		i++;
 	}
+	return (str);
+}
+
+/* ************************************************************************** */
+static char *delete_char(char *str, int *i)
+{
+	int		len;
+	char	*buf_1;
+	char	*buf_2;
+
+	buf_1 = NULL;
+	buf_2 = NULL;
+
+	len = ft_strlen(str);
+	buf_1 = ft_substr(str, 0, *i);		
+	buf_2 = ft_substr(str, *i + 1, len - *i - 1);
+
+	ft_free_null((void **)&str);
+	str = ft_strjoin(buf_1, buf_2);
+	(*i)--;
+
+	ft_free_null((void **)&buf_1);
+	ft_free_null((void **)&buf_2);
+		
 	return (str);
 }
 
@@ -84,15 +112,17 @@ static char	*substitute_vardol(char *str, int *start_pos, t_vars *vars)
 		var_data = get_var(vars->env, vardol_name)->data;		
 	if (does_var_exist(vars->loc, vardol_name))
 		var_data = get_var(vars->loc, vardol_name)->data;
-
-	*start_pos = *start_pos + ft_strlen(var_data) - 1;
-	
 	ft_free_null((void**)&str);
-	
-	str = ft_strjoin(buf_1, var_data);
-	ft_free_null((void**)&buf_1);
 
-	buf_1 = str;
+	if (var_data)
+	{
+		str = ft_strjoin(buf_1, var_data);
+		ft_free_null((void**)&buf_1);
+		buf_1 = str;
+		*start_pos = *start_pos + ft_strlen(var_data) - 1;
+	}
+	else	
+		(*start_pos) = *start_pos - 1;	
 	
 	str = ft_strjoin(buf_1, buf_2);
 

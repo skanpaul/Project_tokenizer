@@ -1,0 +1,73 @@
+prompt> $AA
+space making:            $AA
+translating dollar:      ski
+
+prompt> $AAA
+space making:            $AAA
+translating dollar:      
+
+prompt> $AA$BB
+space making:            $AA$BB
+translating dollar:      ski
+
+prompt> "$AA"
+space making:            "$AA"
+translating dollar:      ski
+
+prompt> "$AA$BB"
+space making:            "$AA$BB"
+translating dollar:      ski
+
+prompt> CC=$AA
+space making:            CC=$AA
+translating dollar:      CC=ski
+
+prompt> 123$AA
+space making:            123$AA
+translating dollar:      123ski
+
+prompt> 123'$AA'
+space making:            123'$AA'
+translating dollar:      123$AA
+
+prompt> 123"$AA"456
+space making:            123"$AA"456
+translating dollar:      123ski456
+
+prompt> 123"$AA$AA"456
+space making:            123"$AA$AA"456
+translating dollar:      123skiski456
+
+prompt> 123"$AA$BB"456
+space making:            123"$AA$BB"456
+translating dollar:      123ski456
+
+prompt> 123"$AA"'$AA'456
+space making:            123"$AA"'$AA'456
+translating dollar:      123ski$AA456
+
+prompt> 123"$AA"$AA 456
+space making:            123"$AA"$AA 456
+translating dollar:      123skiski 456
+
+prompt> 123"$AA"$BB 456
+space making:            123"$AA"$BB 456
+translating dollar:      123ski 456
+
+prompt> "$AA"
+space making:            "$AA"
+translating dollar:      ski
+
+prompt> bobo_"$AA"
+space making:            bobo_"$AA"
+translating dollar:      bobo_ski
+
+prompt> bobo_"$AA '$AA'"
+space making:            bobo_"$AA '$AA'"
+translating dollar:      bobo_ski ski
+-------------------------------------------------> FAUX
+
+prompt> bobo_'$AA "$AA"'
+space making:            bobo_'$AA "$AA"'
+translating dollar:      bobo_$AA $AA
+-------------------------------------------------> FAUX

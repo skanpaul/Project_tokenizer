@@ -6,7 +6,7 @@
 /*   By: sorakann <sorakann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 15:59:47 by ski               #+#    #+#             */
-/*   Updated: 2022/05/06 21:29:25 by sorakann         ###   ########.fr       */
+/*   Updated: 2022/05/06 23:04:48 by sorakann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int main (int argc, char **argv, char **envp)
 	while (1)
 	{
 		new_line = readline(MSG_PROMPT);
-		// new_line = ft_strdup("$ $AA$AA");
+		// new_line = ft_strdup("$AAh");
 		ft_add_history(new_line);
 
 		if (is_line_with_correct_quote(new_line) == false)
