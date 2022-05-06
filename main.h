@@ -6,7 +6,7 @@
 /*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 16:00:42 by ski               #+#    #+#             */
-/*   Updated: 2022/05/05 08:19:34 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/06 11:05:57 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,7 @@
 # define MSG_MAIN_SIGINT		"parent receive SIGINT [ctrl-C]\n"
 # define MSG_MAIN_SIGQUIT		"parent receive SIGQUIT [ctrl-\\]\n"
 /* ************************************************************************** */
-typedef enum e_token_type
-{
-	cmd,
-	file,
-	chevron_in,
-	chevron_out,
-	pipeline, 
-	arg	
-} t_token_type;
 
-/* ************************************************************************** */
 typedef struct s_quote_info
 {
 	int		cnt_char_realquote;
@@ -57,6 +47,39 @@ typedef struct s_quote_info
 	bool	flag_exiting_realquote;
 	
 }	t_quote_info;
+// ----------------------------------------
+
+# define RED "\033[1;31m"
+# define GREEN "\033[1;32m"
+# define YELLOW "\033[1;33m"
+# define CYAN "\033[1;36m"
+# define DEFAULT "\033[0m"
+/* ************************************************************************** */
+
+typedef struct s_sig
+{
+	struct sigaction	sa_sigint_main;
+	struct sigaction	sa_sigquit_main;
+	struct sigaction	sa_signal_prog;
+} t_sig;
+// ----------------------------------------
+typedef struct	s_env
+{
+	char			*name;
+	char			*data;
+	struct s_env	*next;
+}	t_env;
+// ----------------------------------------
+typedef struct	s_vars
+{
+	int		stdin_fd;
+	int		stdout_fd;
+	int		stderr_fd;
+	t_env	*env;
+	t_env	*loc;
+	char	**env_char_array;
+	t_sig	sig;
+}	t_vars;
 
 /* ************************************************************************** */
 typedef struct s_data
