@@ -6,7 +6,7 @@
 /*   By: sorakann <sorakann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 14:22:02 by ski               #+#    #+#             */
-/*   Updated: 2022/05/08 12:19:30 by sorakann         ###   ########.fr       */
+/*   Updated: 2022/05/08 14:11:15 by sorakann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ bool	is_char_for_dolvar_name(char c)
 		return (true);
 	return (false);
 }
+
 /* ************************************************************************** */
 bool	is_vardol(char *str, int i)
 {
