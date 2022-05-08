@@ -6,17 +6,31 @@
 /*   By: sorakann <sorakann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 14:22:02 by ski               #+#    #+#             */
-/*   Updated: 2022/05/08 11:25:51 by sorakann         ###   ########.fr       */
+/*   Updated: 2022/05/08 12:08:34 by sorakann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 /* ************************************************************************** */
-static bool	is_char_for_dolvar_name(char c);
+// static bool	is_char_for_dolvar_name(char c);
 static bool	is_vardol(char *str, int i);
 static int	get_end_pos_vardol(char *str, int start_pos);
 static char	*substitute_vardol(char *str, int *start_pos, t_vars *vars);
-static char	*delete_char(char *str, int *i);
+static char	*delete_quote_char(char *str, int *i);
+
+/* ************************************************************************** */
+void translate_dollars_all(char **array, t_vars *vars)
+{
+	int i;
+
+	i = 0;
+	while(array[i])
+	{
+		array[i] = translate_dollar(*(array + i), vars);			
+		i++;
+	}
+	
+}
 
 /* ************************************************************************** */
 char	*translate_dollar(char *str, t_vars *vars)
@@ -30,20 +44,17 @@ char	*translate_dollar(char *str, t_vars *vars)
 	while (str[i] != 0)
 	{
 		refresh_quote_info(&qti, str[i]);
-		
-		if (is_vardol(str, i) &&  !is_inside_single_realquote(&qti))
+		if (is_vardol(str, i) && !is_inside_single_realquote(&qti))
 			str = substitute_vardol(str, &i, vars);
-			
 		if (is_entering_realquote(&qti) || is_exiting_realquote(&qti))
-			str = delete_char(str, &i);
-			
+			str = delete_quote_char(str, &i);
 		i++;
 	}
 	return (str);
 }
 
 /* ************************************************************************** */
-static char	*delete_char(char *str, int *i)
+static char	*delete_quote_char(char *str, int *i)
 {
 	int		len;
 	char	*buf_1;
@@ -111,24 +122,27 @@ static int	get_end_pos_vardol(char *str, int start_pos)
 	int	i;
 
 	i = start_pos;
-	while (is_char_for_dolvar_name(str[i + 1]))
+	while (ft_isalnum(str[i + 1]) || str[i + 1] == '_')
 		i++;
+	// while (is_char_for_dolvar_name(str[i + 1]))
+	// 	i++;
 	return (i);
 }
 
 /* ************************************************************************** */
-static bool	is_char_for_dolvar_name(char c)
-{
-	if (ft_isalnum(c) || c == '_')
-		return (true);
-	return (false);
-}
-
+// static bool	is_char_for_dolvar_name(char c)
+// {
+// 	if (ft_isalnum(c) || c == '_')
+// 		return (true);
+// 	return (false);
+// }
 /* ************************************************************************** */
 static bool	is_vardol(char *str, int i)
 {
-	if (str[i] == '$' && is_char_for_dolvar_name(str[i + 1]))
+	if (str[i] == '$' && (ft_isalnum(str[i + 1]) || str[i + 1] == '_'))
 		return (true);
+	// if (str[i] == '$' && is_char_for_dolvar_name(str[i + 1]))
+	// 	return (true);
 	return (false);
 }
 

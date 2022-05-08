@@ -6,7 +6,7 @@
 /*   By: sorakann <sorakann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 15:59:47 by ski               #+#    #+#             */
-/*   Updated: 2022/05/08 10:38:09 by sorakann         ###   ########.fr       */
+/*   Updated: 2022/05/08 12:08:15 by sorakann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int main (int argc, char **argv, char **envp)
 	char **array;
 	int cnt_w;
 	t_vars vars;
+	int i;
 
 	// ---------------------------------------------------
 	array = NULL;
@@ -52,33 +53,20 @@ int main (int argc, char **argv, char **envp)
 		new_line = chevron_space_maker(new_line);
 		new_line = pipeline_space_maker(new_line);
 		ft_printf("space making:\t\t %s\n", new_line);
-
-		// array = ft_split(new_line, '|');		
-		// array = split_shell_line(new_line, '|');	
-
-
-
-
+		
+		// new_line = translate_dollar(new_line, &vars);
+		// // new_line = replace_vars(&vars, new_line);
+		// ft_printf("translating dollar:\t %s\n", new_line);
 
 		
+		array = ft_split(new_line, ' ');		
+		array = split_shell_line(new_line, ' ');	
 
-		new_line = translate_dollar(new_line, &vars);
-		// new_line = replace_vars(&vars, new_line);
-
-
-
-
-
-		ft_printf("translating dollar:\t %s\n", new_line);
-		ft_printf("\n");
+		translate_dollars_all(array, &vars);		
+				
+		print_array_in_line(array);
 		
-			
-		// ft_printf("\n");
-		// print_array(array);
-		// ft_printf("\n");
-		
-		// free_array(array);
-			
+		free_array(array);			
 							
 		if (ft_strncmp(new_line, "exit", ft_strlen("exit") + 1) == 0)
 			exit(0);

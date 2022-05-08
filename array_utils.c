@@ -6,7 +6,7 @@
 /*   By: sorakann <sorakann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 14:59:35 by ski               #+#    #+#             */
-/*   Updated: 2022/05/02 22:35:34 by sorakann         ###   ########.fr       */
+/*   Updated: 2022/05/08 11:55:40 by sorakann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,28 @@ void print_array(char **array)
 		ft_putstr_fd("\n", STDOUT_FILENO);
 		i++;
 	}
+}
+
+/* ************************************************************************** */
+void print_array_in_line(char **array)
+{
+	int i;
+
+	i = 0;
+	if (array[i] != NULL)
+	{
+		ft_printf("\n");
+		ft_printf("ARRAY:\t\t\t ");
+	}
+	
+	while (array[i] != NULL)
+	{
+		ft_printf("%d:[%s] ", i, array[i]);
+		i++;
+	}
+	ft_printf("\n");
+	ft_printf("\n");
+	
 }
 
 /* ************************************************************************** */

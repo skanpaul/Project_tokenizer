@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sorakann <sorakann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 16:00:42 by ski               #+#    #+#             */
-/*   Updated: 2022/05/06 12:04:48 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/08 12:07:29 by sorakann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,9 @@ typedef struct s_data
 /* ************************************************************************** */
 char	**split_shell_line(char *line, char separator);
 int		count_words(char *line, char separator);
-char	*translate_dollar(char *str, t_vars *vars);
 
+char	*translate_dollar(char *str, t_vars *vars);
+void	translate_dollars_all(char **array, t_vars *vars);
 
 bool 	is_line_with_correct_quote(char *line);
 // ----------------------------------------------
@@ -112,6 +113,7 @@ char *pipeline_space_maker(char *line);
 char **tokenizer(char *line);
 void free_array(char **array);
 void print_array(char **array);
+void print_array_in_line(char **array);
 // ----------------------------------------------
 
 void ft_free_null(void **ptr);
