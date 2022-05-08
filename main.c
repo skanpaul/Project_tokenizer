@@ -6,7 +6,7 @@
 /*   By: sorakann <sorakann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 15:59:47 by ski               #+#    #+#             */
-/*   Updated: 2022/05/07 12:16:05 by sorakann         ###   ########.fr       */
+/*   Updated: 2022/05/08 10:38:09 by sorakann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int main (int argc, char **argv, char **envp)
 
 	vars.loc->name = ft_strdup("AA");
 	// vars.loc->data = ft_strdup("\'\'\'");
-	vars.loc->data = ft_strdup("$");
+	vars.loc->data = ft_strdup("ski");
 	vars.loc->next = NULL;
 	
 	// ---------------------------------------------------

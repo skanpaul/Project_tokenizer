@@ -6,7 +6,7 @@
 /*   By: sorakann <sorakann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 14:22:02 by ski               #+#    #+#             */
-/*   Updated: 2022/05/07 00:24:27 by sorakann         ###   ########.fr       */
+/*   Updated: 2022/05/08 10:37:33 by sorakann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,16 @@ char	*translate_dollar(char *str, t_vars *vars)
 	while (str[i] != 0)
 	{
 		refresh_quote_info(&qti, str[i]);
+		
 		if ((str[i] == '$') && (is_inside_single_realquote(&qti) == false)
 			&& (is_vardol(str, i)))
 			str = substitute_vardol(str, &i, vars);
-		if ((str[i] == '\'' || str[i] == '\"')
-			&& (is_entering_realquote(&qti) || is_exiting_realquote(&qti)))
+			
+		if ((is_entering_realquote(&qti) || is_exiting_realquote(&qti)))
+		// if ((str[i] == '\'' || str[i] == '\"')
+		// 	&& (is_entering_realquote(&qti) || is_exiting_realquote(&qti)))
 			str = delete_char(str, &i);
+			
 		i++;
 	}
 	return (str);
