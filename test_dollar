@@ -66,11 +66,15 @@ prompt> bobo_"$AA '$AA'"
 space making:            bobo_"$AA '$AA'"
 translating dollar:      bobo_ski ski
 -------------------------------------------------> FAUX
+translating dollar:      bobo_ski 'ski'
+-------------------------------------------------> correct
 
 prompt> bobo_'$AA "$AA"'
 space making:            bobo_'$AA "$AA"'
 translating dollar:      bobo_$AA $AA
 -------------------------------------------------> FAUX
+translating dollar:      bobo_$AA "$AA"
+-------------------------------------------------> correct
 
 prompt> $
 space making:            $
