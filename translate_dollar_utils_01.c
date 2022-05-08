@@ -6,7 +6,7 @@
 /*   By: sorakann <sorakann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 14:22:02 by ski               #+#    #+#             */
-/*   Updated: 2022/05/08 14:31:32 by sorakann         ###   ########.fr       */
+/*   Updated: 2022/05/08 14:43:26 by sorakann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ typedef struct s_sv
 }	t_sv;
 
 /* ************************************************************************** */
-static void part_1(int *start_pos, t_vars *vars, t_sv *s);
-static void part_2(int *start_pos, t_vars *vars, t_sv *s);
+static void	part_1(int *start_pos, t_vars *vars, t_sv *s);
+static void	part_2(int *start_pos, t_vars *vars, t_sv *s);
 
 /* ************************************************************************** */
 void	translate_dollars_all(char **array, t_vars *vars)
@@ -63,25 +63,24 @@ char	*translate_dollar(char *str, t_vars *vars)
 
 /* ************************************************************************** */
 // [ *start_pos ] is the position of the [$] sign
-// [ end_pos ] is the position of the last caracters of the dollar-variable
 char	*substitute_vardol(char *str, int *start_pos, t_vars *vars)
 {
 	t_sv	s;
 
 	s.str = str;
-	
 	part_1(start_pos, vars, &s);
 	part_2(start_pos, vars, &s);
-	
 	return (s.str);
 }
 
 /* ************************************************************************** */
-static void part_1(int *start_pos, t_vars *vars, t_sv *s)
+// [ *start_pos ] is the position of the [$] sign
+// [ end_pos ] is the position of the last caracters of the dollar-variable
+static void	part_1(int *start_pos, t_vars *vars, t_sv *s)
 {
-	int qty;
+	int	qty;
 
-	qty = 0;	
+	qty = 0;
 	s->end_pos = 0;
 	s->buf_1 = NULL;
 	s->buf_2 = NULL;
@@ -89,16 +88,16 @@ static void part_1(int *start_pos, t_vars *vars, t_sv *s)
 	s->end_pos = get_end_pos_vardol(s->str, *start_pos);
 	qty = s->end_pos - *start_pos;
 	s->var_name = ft_substr(s->str, *start_pos + 1, qty);
-	qty =  *start_pos;
+	qty = *start_pos;
 	s->buf_1 = ft_substr(s->str, 0, qty);
 	qty = ft_strlen(s->str) - s->end_pos - 1;
 	s->buf_2 = ft_substr(s->str, s->end_pos + 1, qty);
 }
 
 /* ************************************************************************** */
-static void part_2(int *start_pos, t_vars *vars, t_sv *s)
+static void	part_2(int *start_pos, t_vars *vars, t_sv *s)
 {
-	s->var_data = NULL;	
+	s->var_data = NULL;
 	if (does_var_exist(vars->env, s->var_name))
 		s->var_data = get_var(vars->env, s->var_name)->data;
 	if (does_var_exist(vars->loc, s->var_name))
@@ -119,7 +118,7 @@ static void part_2(int *start_pos, t_vars *vars, t_sv *s)
 	ft_free_null((void **)&s->var_name);
 }
 
-// /* ************************************************************************** */
+/* ************************************************************************** */
 // // [ *start_pos ] is the position of the [$] sign
 // // [ end_pos ] is the position of the last caracters of the dollar-variable
 // char	*substitute_vardol(char *str, int *start_pos, t_vars *vars)
@@ -161,4 +160,4 @@ static void part_2(int *start_pos, t_vars *vars, t_sv *s)
 // 	return (str);
 // }
 
-// /* ************************************************************************** */
+/* ************************************************************************** */
