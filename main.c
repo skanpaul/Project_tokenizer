@@ -6,7 +6,7 @@
 /*   By: sorakann <sorakann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 15:59:47 by ski               #+#    #+#             */
-/*   Updated: 2022/05/06 23:33:23 by sorakann         ###   ########.fr       */
+/*   Updated: 2022/05/07 12:16:05 by sorakann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ int main (int argc, char **argv, char **envp)
 	vars.loc = (t_env *)malloc(1 * sizeof(t_env));
 
 	vars.loc->name = ft_strdup("AA");
-	vars.loc->data = ft_strdup("\'\'\'");
+	// vars.loc->data = ft_strdup("\'\'\'");
+	vars.loc->data = ft_strdup("$");
 	vars.loc->next = NULL;
 	
 	// ---------------------------------------------------
@@ -55,7 +56,19 @@ int main (int argc, char **argv, char **envp)
 		// array = ft_split(new_line, '|');		
 		// array = split_shell_line(new_line, '|');	
 
+
+
+
+
+		
+
 		new_line = translate_dollar(new_line, &vars);
+		// new_line = replace_vars(&vars, new_line);
+
+
+
+
+
 		ft_printf("translating dollar:\t %s\n", new_line);
 		ft_printf("\n");
 		
