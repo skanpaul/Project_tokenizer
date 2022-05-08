@@ -6,14 +6,14 @@
 /*   By: sorakann <sorakann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 14:22:02 by ski               #+#    #+#             */
-/*   Updated: 2022/05/08 10:37:33 by sorakann         ###   ########.fr       */
+/*   Updated: 2022/05/08 11:23:35 by sorakann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 /* ************************************************************************** */
 static bool	is_char_for_dolvar_name(char c);
-static bool	is_vardol(char *str, int i_dollars);
+static bool	is_vardol(char *str, int i);
 static int	get_end_pos_vardol(char *str, int start_pos);
 static char	*substitute_vardol(char *str, int *start_pos, t_vars *vars);
 static char	*delete_char(char *str, int *i);
@@ -31,13 +31,10 @@ char	*translate_dollar(char *str, t_vars *vars)
 	{
 		refresh_quote_info(&qti, str[i]);
 		
-		if ((str[i] == '$') && (is_inside_single_realquote(&qti) == false)
-			&& (is_vardol(str, i)))
+		if ((is_vardol(str, i)) && ( !is_inside_single_realquote(&qti)))
 			str = substitute_vardol(str, &i, vars);
 			
 		if ((is_entering_realquote(&qti) || is_exiting_realquote(&qti)))
-		// if ((str[i] == '\'' || str[i] == '\"')
-		// 	&& (is_entering_realquote(&qti) || is_exiting_realquote(&qti)))
 			str = delete_char(str, &i);
 			
 		i++;
@@ -128,9 +125,9 @@ static bool	is_char_for_dolvar_name(char c)
 }
 
 /* ************************************************************************** */
-static bool	is_vardol(char *str, int i_dollars)
+static bool	is_vardol(char *str, int i)
 {
-	if (is_char_for_dolvar_name(str[i_dollars + 1]))
+	if (str[i] == '$' && is_char_for_dolvar_name(str[i + 1]))
 		return (true);
 	return (false);
 }
