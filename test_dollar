@@ -107,3 +107,9 @@ translating dollar:      ''
 prompt> "'$BB'"$AA
 space making:            "'$BB'"$AA
 translating dollar:      ''ski
+
+
+prompt> cat "Le"" $AA ""c'est pour l'hiver ""mais $AA est aussi "le' login de sorakann '"alias $AA"
+space making:            cat "Le"" $AA ""c'est pour l'hiver ""mais $AA est aussi "le' login de sorakann '"alias $AA"
+
+ARRAY:                   0:[cat] 1:[Le ski c'est pour l'hiver mais ski est aussi le login de sorakann alias ski] 
