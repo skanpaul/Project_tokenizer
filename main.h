@@ -6,7 +6,7 @@
 /*   By: sorakann <sorakann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 16:00:42 by ski               #+#    #+#             */
-/*   Updated: 2022/05/08 12:07:29 by sorakann         ###   ########.fr       */
+/*   Updated: 2022/05/08 12:19:07 by sorakann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,16 @@ typedef struct s_data
 char	**split_shell_line(char *line, char separator);
 int		count_words(char *line, char separator);
 
-char	*translate_dollar(char *str, t_vars *vars);
+// ----------------------------------------------
 void	translate_dollars_all(char **array, t_vars *vars);
+char	*translate_dollar(char *str, t_vars *vars);
+bool	is_char_for_dolvar_name(char c);
+bool	is_vardol(char *str, int i);
+int		get_end_pos_vardol(char *str, int start_pos);
+char	*substitute_vardol(char *str, int *start_pos, t_vars *vars);
+char	*delete_char(char *str, int *i);
 
+// ----------------------------------------------
 bool 	is_line_with_correct_quote(char *line);
 // ----------------------------------------------
 void	init_quote_info(t_quote_info *qti);
