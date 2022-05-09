@@ -6,7 +6,7 @@
 /*   By: sorakann <sorakann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 15:59:47 by ski               #+#    #+#             */
-/*   Updated: 2022/05/08 12:08:15 by sorakann         ###   ########.fr       */
+/*   Updated: 2022/05/09 22:26:35 by sorakann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ int main (int argc, char **argv, char **envp)
 	// ---------------------------------------------------
 	while (1)
 	{
-		new_line = readline(MSG_PROMPT);
-		// new_line = ft_strdup("$AAh");
+		// new_line = readline(MSG_PROMPT);
+		new_line = ft_strdup("<< end grep jus <file");
 		ft_add_history(new_line);
 
 		if (is_line_with_correct_quote(new_line) == false)
@@ -57,22 +57,27 @@ int main (int argc, char **argv, char **envp)
 		// new_line = translate_dollar(new_line, &vars);
 		// // new_line = replace_vars(&vars, new_line);
 		// ft_printf("translating dollar:\t %s\n", new_line);
-
-		
-		array = ft_split(new_line, ' ');		
+	
 		array = split_shell_line(new_line, ' ');	
+		print_array_in_line(array);
 
-		translate_dollars_all(array, &vars);		
-				
+		translate_dollars_all(array, &vars);
 		print_array_in_line(array);
 		
-		free_array(array);			
+		clear_chevron(array);
+		print_array_in_line(array);
+				
+				
+		
+		free_array(array);
 							
 		if (ft_strncmp(new_line, "exit", ft_strlen("exit") + 1) == 0)
 			exit(0);
 		
 		if (new_line)
 			free(new_line);		
+
+		ft_printf("========= BOUCLE ========\n");
 	}	
 	// ---------------------------------------------------
 	return (0);

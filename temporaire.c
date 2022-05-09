@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   temporaire.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sorakann <sorakann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 12:02:17 by ski               #+#    #+#             */
-/*   Updated: 2022/05/06 12:02:32 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/09 20:47:45 by sorakann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,18 @@ void ft_free_null(void **ptr)
 	if (*ptr != NULL)
 		free(*ptr);
 	*ptr = NULL;
+}
+
+/* ************************************************************************** */
+
+bool does_word_match(char *str, char *hard_text)
+{
+	int res;
+
+	res = ft_strncmp(str, hard_text, ft_strlen(hard_text) + 1);
+	if (res == 0)
+		return (true);
+	return (false);	
 }
 
 /* ************************************************************************** */

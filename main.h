@@ -6,7 +6,7 @@
 /*   By: sorakann <sorakann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 16:00:42 by ski               #+#    #+#             */
-/*   Updated: 2022/05/08 12:19:07 by sorakann         ###   ########.fr       */
+/*   Updated: 2022/05/09 21:20:49 by sorakann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,14 @@ void	add_var(t_env **var_head, char *name, char *data);
 void	remove_var(t_env **var_head, char *var_name);
 int		size_var_list(t_env *var_head);
 void	free_var_list(t_env **var_head);
+
+
+
+
+// -------------------------------------------------- linklist_utils.c
+bool does_word_match(char *str, char *hard_text);
+
+void clear_chevron(char **array);
 
 /* ************************************************************************** */
 #endif
