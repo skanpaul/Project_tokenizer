@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sorakann <sorakann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 15:59:47 by ski               #+#    #+#             */
-/*   Updated: 2022/05/10 16:40:10 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/10 21:08:04 by sorakann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ int main (int argc, char **argv, char **envp)
 		
 		ft_add_history(new_line);
 
-
 		if (new_line && new_line[0] != '\0')
 		{
 			if (is_line_with_correct_quote(new_line) == false)
@@ -68,7 +67,7 @@ int main (int argc, char **argv, char **envp)
 			ft_printf(				   "3) get fd IN    :\t [ %d ]\n", fd_in);		
 			
 			fd_out = get_segment_fd_out(array);	
-			ft_printf(				   "4) get fd OUT    :\t [ %d ]\n", fd_out);
+			ft_printf(				   "4) get fd OUT   :\t [ %d ]\n", fd_out);
 			
 			if (fd_out > 2)
 				close(fd_out);
@@ -76,7 +75,7 @@ int main (int argc, char **argv, char **envp)
 				close(fd_in);
 			
 			clear_chevron(array);
-			print_array_in_line(array, "5) clear chevron  :\t ");
+			print_array_in_line(array, "5) clear chevron:\t ");
 			ft_printf("--------------------------------------------------------\n");
 			
 			free_array(&array);
