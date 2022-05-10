@@ -6,7 +6,7 @@
 /*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 16:00:42 by ski               #+#    #+#             */
-/*   Updated: 2022/05/10 11:50:58 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/10 12:04:21 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,8 @@ void	free_var_list(t_env **var_head);
 bool	does_word_match(char *str, char *hard_text);
 
 int		get_segment_fd_in(char **array);
+int		get_segment_fd_out(char **array);
+
 void	clear_chevron(char **array);
 
 
