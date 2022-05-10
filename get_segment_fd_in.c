@@ -6,7 +6,7 @@
 /*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 10:12:10 by ski               #+#    #+#             */
-/*   Updated: 2022/05/10 11:55:57 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/10 12:00:28 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,37 @@
 #define OF_READ		0
 #define OF_WRITE	1
 #define OF_APPEND	2
+
+/* ************************************************************************** */
+int get_segment_fd_out(char **array)
+{
+	int	i;
+	int fd_out;
+
+	fd_out = 0;
+	i = 0;
+	while (array[i])
+	{
+		if (does_word_match(array[i], ">") || does_word_match(array[i], ">>"))
+		{
+			if(fd_out != 0)
+				close(fd_out);
+				
+			if (does_word_match(array[i], ">"))
+				fd_out = open(array[i + 1], O_WRONLY | O_TRUNC | O_CREAT, 0644);
+			else
+				fd_out = open(array[i + 1], O_WRONLY | O_APPEND | O_CREAT, 0644);
+
+			if (fd_out < 0)
+			{
+				perror(array[i + 1]);
+				break;
+			}
+		}		
+		i++;
+	}
+	return (fd_out);
+}
 
 /* ************************************************************************** */
 int get_segment_fd_in(char **array)
