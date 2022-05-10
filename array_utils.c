@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   array_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sorakann <sorakann@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 14:59:35 by ski               #+#    #+#             */
-/*   Updated: 2022/05/08 11:55:40 by sorakann         ###   ########.fr       */
+/*   Updated: 2022/05/10 10:44:02 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,15 @@ void print_array(char **array)
 }
 
 /* ************************************************************************** */
-void print_array_in_line(char **array)
+void print_array_in_line(char **array, char *comment)
 {
 	int i;
 
 	i = 0;
 	if (array[i] != NULL)
 	{
-		ft_printf("\n");
-		ft_printf("ARRAY:\t\t\t ");
+		// ft_printf("\n");
+		ft_printf("%s", comment);
 	}
 	
 	while (array[i] != NULL)
@@ -44,7 +44,7 @@ void print_array_in_line(char **array)
 		i++;
 	}
 	ft_printf("\n");
-	ft_printf("\n");
+	// ft_printf("\n");
 	
 }
 

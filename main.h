@@ -6,7 +6,7 @@
 /*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 16:00:42 by ski               #+#    #+#             */
-/*   Updated: 2022/05/10 10:20:36 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/10 10:39:41 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ char *pipeline_space_maker(char *line);
 char **tokenizer(char *line);
 void free_array(char **array);
 void print_array(char **array);
-void print_array_in_line(char **array);
+void print_array_in_line(char **array, char *comment);
 // ----------------------------------------------
 
 void ft_free_null(void **ptr);
@@ -140,6 +140,7 @@ void	free_var_list(t_env **var_head);
 // -------------------------------------------------- 
 bool	does_word_match(char *str, char *hard_text);
 
+int		get_fd_in(char **array);
 void	clear_chevron(char **array);
 
 

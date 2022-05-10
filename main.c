@@ -6,7 +6,7 @@
 /*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 15:59:47 by ski               #+#    #+#             */
-/*   Updated: 2022/05/10 10:03:39 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/10 10:46:54 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int main (int argc, char **argv, char **envp)
 	int cnt_w;
 	t_vars vars;
 	int i;
+	int fd_in;
 
 	// ---------------------------------------------------
 	array = NULL;
@@ -40,8 +41,8 @@ int main (int argc, char **argv, char **envp)
 	// ---------------------------------------------------
 	while (1)
 	{
-		// new_line = readline(MSG_PROMPT);
-		new_line = ft_strdup("<< end grep jus <file");
+		new_line = readline(MSG_PROMPT);
+		// new_line = ft_strdup("<< end grep jus <file");
 		ft_add_history(new_line);
 
 		if (is_line_with_correct_quote(new_line) == false)
@@ -52,22 +53,21 @@ int main (int argc, char **argv, char **envp)
 
 		new_line = chevron_space_maker(new_line);
 		new_line = pipeline_space_maker(new_line);
-		ft_printf("space making:\t\t %s\n", new_line);
+		ft_printf(				   "0) space making :\t %s\n", new_line);
 		
-		// new_line = translate_dollar(new_line, &vars);
-		// // new_line = replace_vars(&vars, new_line);
-		// ft_printf("translating dollar:\t %s\n", new_line);
-	
+		
 		array = split_shell_line(new_line, ' ');	
-		print_array_in_line(array);
+		print_array_in_line(array, "1) split simple :\t ");
 
 		translate_dollars_all(array, &vars);
-		print_array_in_line(array);
+		print_array_in_line(array, "2) translate $  :\t ");
+		
+		fd_in = get_fd_in(array);
+		ft_printf(				   "3) get fd IN    :\t [ %d ]\n", fd_in);
+
 		
 		clear_chevron(array);
-		print_array_in_line(array);
-				
-				
+		print_array_in_line(array, "4) clear chevron  :\t ");
 		
 		free_array(array);
 							

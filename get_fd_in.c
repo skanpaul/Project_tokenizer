@@ -6,42 +6,50 @@
 /*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 10:12:10 by ski               #+#    #+#             */
-/*   Updated: 2022/05/10 10:20:48 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/10 10:55:19 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
 /* ************************************************************************** */
-
+#define OF_READ		0
+#define OF_WRITE	1
+#define OF_APPEND	2
 
 /* ************************************************************************** */
 int get_fd_in(char **array)
 {
 	int	i;
-	int fd_in_line;
+	int fd_in;
 
-	fd_in_line = 0;  // ou mettre [ vars.stdin_fd ] ?
+	fd_in = 0;  // ou mettre [ vars.stdin_fd ] ?
 
 	i = 0;
 	while (array[i])
 	{
 		if (does_word_match(array[i], "<"))
 		{
+			if(fd_in != 0)
+				close(fd_in);
+
+			fd_in = open(array[i + 1], O_RDONLY);;
 			
+			if (fd_in < 0)
+			{
+				perror(array[i + 1]);
+				break;
+			}
 		}
 		
-		if (does_word_match(array[i], "<<"))
-		{
-			// appeller here_doc ?
-		}		
+		// if (does_word_match(array[i], "<<"))
+		// 	// appeller here_doc ?
+			
 		i++;
 	}
 
-	return (fd_in_line);
+	return (fd_in);
 }
-
-/* ************************************************************************** */
 
 /* ************************************************************************** */
 
