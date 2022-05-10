@@ -1,5 +1,0 @@
-make --dry-run --always-make --keep-going --print-directory
-make: Entering directory '/home/sorakann/projet/Project_tokenizer'
-gcc  linklist_utils.c translate_dollar.c chevron_space_maker.c temporaire.c quote_info_utils_01.c main.c pipeline_space_maker.c array_utils.c quote_info_utils_02.c split_shell_line.c tokenizer.c -lreadline -L. -lft -o a.out
-make: Leaving directory '/home/sorakann/projet/Project_tokenizer'
- 
