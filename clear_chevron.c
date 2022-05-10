@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clear_chevron.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sorakann <sorakann@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 20:44:03 by sorakann          #+#    #+#             */
-/*   Updated: 2022/05/09 22:20:55 by sorakann         ###   ########.fr       */
+/*   Updated: 2022/05/10 10:00:54 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ static void delete_chevron_and_file(char **array, int *i)
 		j++;
 	}
 	array[*i + j] = array[*i + j + 2];
+	array[*i + j + 1] = NULL;
+	
 	
 	ft_free_null((void **)&ptr_chevron_str);		
 	ft_free_null((void **)&ptr_filename);
