@@ -6,7 +6,7 @@
 /*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 15:59:47 by ski               #+#    #+#             */
-/*   Updated: 2022/05/10 11:41:33 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/10 11:50:29 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int main (int argc, char **argv, char **envp)
 		translate_dollars_all(array, &vars);
 		print_array_in_line(array, "2) translate $  :\t ");
 		
-		fd_in = get_fd_in(array);
+		fd_in = get_segment_fd_in(array);
 		ft_printf(				   "3) get fd IN    :\t [ %d ]\n", fd_in);
 		close(fd_in);
 
@@ -71,7 +71,7 @@ int main (int argc, char **argv, char **envp)
 		print_array_in_line(array, "4) clear chevron  :\t ");
 		ft_printf("--------------------------------------------------------\n");
 		
-		free_array(array);
+		free_array(&array);
 							
 		if (ft_strncmp(new_line, "exit", ft_strlen("exit") + 1) == 0)
 			exit(0);
