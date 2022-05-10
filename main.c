@@ -6,7 +6,7 @@
 /*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 15:59:47 by ski               #+#    #+#             */
-/*   Updated: 2022/05/10 11:21:45 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/10 11:41:33 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,7 @@ int main (int argc, char **argv, char **envp)
 		ft_printf("--------------------------------------------------------\n");
 		new_line = chevron_space_maker(new_line);
 		new_line = pipeline_space_maker(new_line);
-		ft_printf(				   "0) space making :\t %s\n", new_line);
-		
+		ft_printf(				   "0) space making :\t %s\n", new_line);		
 		
 		array = split_shell_line(new_line, ' ');	
 		print_array_in_line(array, "1) split simple :\t ");
