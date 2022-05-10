@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   translate_dollar_utils_01.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sorakann <sorakann@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 14:22:02 by ski               #+#    #+#             */
-/*   Updated: 2022/05/08 14:43:26 by sorakann         ###   ########.fr       */
+/*   Updated: 2022/05/10 13:52:06 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ static void	part_1(int *start_pos, t_vars *vars, t_sv *s)
 {
 	int	qty;
 
+	(void)vars;
 	qty = 0;
 	s->end_pos = 0;
 	s->buf_1 = NULL;

@@ -8,6 +8,9 @@
 			"args": [
 				"-fdiagnostics-color=always",
 				"-g",
+				"-Wall",
+				"-Wextra",
+				"-Werror",
 				"*.c",
 				"-lreadline",
 				"-L.",
