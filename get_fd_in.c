@@ -6,7 +6,7 @@
 /*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 10:12:10 by ski               #+#    #+#             */
-/*   Updated: 2022/05/10 10:55:19 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/10 11:15:34 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int get_fd_in(char **array)
 	int	i;
 	int fd_in;
 
-	fd_in = 0;  // ou mettre [ vars.stdin_fd ] ?
+	fd_in = 0;  
 
 	i = 0;
 	while (array[i])

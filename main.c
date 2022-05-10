@@ -6,7 +6,7 @@
 /*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 15:59:47 by ski               #+#    #+#             */
-/*   Updated: 2022/05/10 10:46:54 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/10 11:21:45 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int main (int argc, char **argv, char **envp)
 			// clean prog + exit prog
 		}
 
+		ft_printf("--------------------------------------------------------\n");
 		new_line = chevron_space_maker(new_line);
 		new_line = pipeline_space_maker(new_line);
 		ft_printf(				   "0) space making :\t %s\n", new_line);
@@ -64,10 +65,12 @@ int main (int argc, char **argv, char **envp)
 		
 		fd_in = get_fd_in(array);
 		ft_printf(				   "3) get fd IN    :\t [ %d ]\n", fd_in);
+		close(fd_in);
 
 		
 		clear_chevron(array);
 		print_array_in_line(array, "4) clear chevron  :\t ");
+		ft_printf("--------------------------------------------------------\n");
 		
 		free_array(array);
 							
@@ -76,8 +79,6 @@ int main (int argc, char **argv, char **envp)
 		
 		if (new_line)
 			free(new_line);		
-
-		ft_printf("========= BOUCLE ========\n");
 	}	
 	// ---------------------------------------------------
 	return (0);
