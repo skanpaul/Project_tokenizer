@@ -6,7 +6,7 @@
 /*   By: sorakann <sorakann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 12:02:17 by ski               #+#    #+#             */
-/*   Updated: 2022/05/09 20:47:45 by sorakann         ###   ########.fr       */
+/*   Updated: 2022/05/10 21:33:11 by sorakann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void ft_free_null(void **ptr)
 }
 
 /* ************************************************************************** */
-
 bool does_word_match(char *str, char *hard_text)
 {
 	int res;
@@ -30,6 +29,21 @@ bool does_word_match(char *str, char *hard_text)
 	if (res == 0)
 		return (true);
 	return (false);	
+}
+
+/* ************************************************************************** */
+int	openfilex(char *filepath, int o_flag)
+{
+	int	fd;
+
+	fd = -1;
+	if (o_flag == 0)
+		fd = open(filepath, O_RDONLY);
+	else if (o_flag == 1)
+		fd = open(filepath, O_WRONLY | O_TRUNC | O_CREAT, 0644);
+	else if (o_flag == 2)
+		fd = open(filepath, O_WRONLY | O_APPEND | O_CREAT, 0644);
+	return (fd);
 }
 
 /* ************************************************************************** */

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chevron_segment_utils.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sorakann <sorakann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 10:12:10 by ski               #+#    #+#             */
-/*   Updated: 2022/05/10 17:28:39 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/10 22:09:45 by sorakann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,15 @@ int	get_segment_fd_out(char **array)
 	{
 		if (does_word_match(array[i], ">") || does_word_match(array[i], ">>"))
 		{
+			// PEUT ETRE A EFFACER -----------------------------------------
+			if(array[i + 1] == NULL  || array[i + 1][0] == '\0')
+			{
+				ft_printf("syntax error near unexpected token `newline'\n");
+				fd_out = -1;
+				break ;
+			}
+			// -------------------------------------------------------------
+			
 			if (fd_out != 0)
 				close(fd_out);
 			if (does_word_match(array[i], ">"))
@@ -107,6 +116,15 @@ int	get_segment_fd_in(char **array)
 	{
 		if (does_word_match(array[i], "<") || does_word_match(array[i], "<<"))
 		{
+			// PEUT ETRE A EFFACER -----------------------------------------
+			if(array[i + 1] == NULL  || array[i + 1][0] == '\0')
+			{
+				ft_printf("syntax error near unexpected token `newline'\n");
+				fd_in = -1;
+				break ;
+			}
+			// -------------------------------------------------------------
+			
 			if (fd_in != 0)
 				close(fd_in);
 			if (does_word_match(array[i], "<"))
