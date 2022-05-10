@@ -6,7 +6,7 @@
 /*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 10:12:10 by ski               #+#    #+#             */
-/*   Updated: 2022/05/10 17:24:34 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/10 17:28:39 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,8 @@ int	get_segment_fd_out(char **array)
 				close(fd_out);
 			if (does_word_match(array[i], ">"))
 				fd_out = openfilex(array[i + 1], 1);
-				// fd_out = open(array[i + 1], O_WRONLY | O_TRUNC | O_CREAT, 0777);
 			else
 				fd_out = openfilex(array[i + 1], 2);
-				// fd_out = open(array[i + 1], O_WRONLY | O_APPEND | O_CREAT, 0777);
 			if (fd_out < 0)
 			{
 				perror(array[i + 1]);
@@ -113,7 +111,6 @@ int	get_segment_fd_in(char **array)
 				close(fd_in);
 			if (does_word_match(array[i], "<"))
 				fd_in = openfilex(array[i + 1], 0);
-				// fd_in = open(array[i + 1], O_RDONLY);
 			else
 			{
 				fd_in = 56;
