@@ -6,7 +6,7 @@
 /*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 10:12:10 by ski               #+#    #+#             */
-/*   Updated: 2022/05/10 11:45:34 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/10 11:55:57 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,52 +48,5 @@ int get_segment_fd_in(char **array)
 	}
 	return (fd_in);
 }
-/* ************************************************************************** */
-// int get_fd_in(char **array)
-// {
-// 	int	i;
-// 	int fd_in;
-
-// 	fd_in = 0;  
-
-// 	i = 0;
-// 	while (array[i])
-// 	{
-// 		if (does_word_match(array[i], "<"))
-// 		{
-// 			if(fd_in != 0)
-// 				close(fd_in);
-
-// 			fd_in = open(array[i + 1], O_RDONLY);
-			
-// 			if (fd_in < 0)
-// 			{
-// 				perror(array[i + 1]);
-// 				break;
-// 			}
-// 		}
-		
-// 		if (does_word_match(array[i], "<<"))
-// 		{
-// 			if(fd_in != 0)
-// 				close(fd_in);
-
-// 			fd_in = 56; //valeur fictive
-// 			ft_printf("Nous avons besoin de heredoc [ << ]\n");
-// 			ft_printf("Délimiteur de heredoc est:   [ %s ]\n", array[i +1]);
-			
-// 			if (fd_in < 0)
-// 			{
-// 				perror(array[i + 1]);
-// 				break;
-// 			}
-// 		}
-			
-// 		i++;
-// 	}
-
-// 	return (fd_in);
-// }
 
 /* ************************************************************************** */
-
