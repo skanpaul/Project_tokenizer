@@ -1,16 +1,62 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_segment_fd.c                                   :+:      :+:    :+:   */
+/*   chevron_segment_utils.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 10:12:10 by ski               #+#    #+#             */
-/*   Updated: 2022/05/10 16:52:31 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/10 17:24:34 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
+
+/* ************************************************************************** */
+static void	delete_chevron_and_file(char **array, int *i);
+
+/* ************************************************************************** */
+void	clear_chevron(char **array)
+{
+	int	i;
+
+	i = 0;
+	while (array[i])
+	{
+		if (does_word_match(array[i], "<")
+			|| does_word_match(array[i], "<<")
+			|| does_word_match(array[i], ">")
+			|| does_word_match(array[i], ">>"))
+		{
+			delete_chevron_and_file(array, &i);
+		}
+		i++;
+	}
+}
+
+/* ************************************************************************** */
+static void	delete_chevron_and_file(char **array, int *i)
+{
+	int		j;
+	char	*ptr_chevron_str;
+	char	*ptr_filename;
+
+	ptr_chevron_str = NULL;
+	ptr_filename = NULL;
+	ptr_chevron_str = array[*i];
+	ptr_filename = array[*i + 1];
+	j = 0;
+	while (array[*i + j + 2])
+	{
+		array[*i + j] = array[*i + j + 2];
+		j++;
+	}
+	array[*i + j] = array[*i + j + 2];
+	array[*i + j + 1] = NULL;
+	ft_free_null((void **)&ptr_chevron_str);
+	ft_free_null((void **)&ptr_filename);
+	(*i)--;
+}
 
 /* ************************************************************************** */
 // RETURN -1: not possible to open a file
@@ -31,9 +77,11 @@ int	get_segment_fd_out(char **array)
 			if (fd_out != 0)
 				close(fd_out);
 			if (does_word_match(array[i], ">"))
-				fd_out = open(array[i + 1], O_WRONLY | O_TRUNC | O_CREAT, 0777);
+				fd_out = openfilex(array[i + 1], 1);
+				// fd_out = open(array[i + 1], O_WRONLY | O_TRUNC | O_CREAT, 0777);
 			else
-				fd_out = open(array[i + 1], O_WRONLY | O_APPEND | O_CREAT, 0777);
+				fd_out = openfilex(array[i + 1], 2);
+				// fd_out = open(array[i + 1], O_WRONLY | O_APPEND | O_CREAT, 0777);
 			if (fd_out < 0)
 			{
 				perror(array[i + 1]);
@@ -64,7 +112,8 @@ int	get_segment_fd_in(char **array)
 			if (fd_in != 0)
 				close(fd_in);
 			if (does_word_match(array[i], "<"))
-				fd_in = open(array[i + 1], O_RDONLY);
+				fd_in = openfilex(array[i + 1], 0);
+				// fd_in = open(array[i + 1], O_RDONLY);
 			else
 			{
 				fd_in = 56;

@@ -6,14 +6,14 @@
 /*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 11:56:48 by gudias            #+#    #+#             */
-/*   Updated: 2022/05/10 10:19:41 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/10 17:15:04 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
 /* ************************************************************************** */
-int	openfile(char *filepath, int o_flag)
+int	openfilex(char *filepath, int o_flag)
 {
 	int	fd;
 
@@ -24,8 +24,6 @@ int	openfile(char *filepath, int o_flag)
 		fd = open(filepath, O_WRONLY | O_TRUNC | O_CREAT, 0644);
 	else if (o_flag == 2)
 		fd = open(filepath, O_WRONLY | O_APPEND | O_CREAT, 0644);
-	if (fd < 0)
-		return (0);
 	return (fd);
 }
 
