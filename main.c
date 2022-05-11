@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sorakann <sorakann@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 15:59:47 by ski               #+#    #+#             */
-/*   Updated: 2022/05/10 21:08:04 by sorakann         ###   ########.fr       */
+/*   Updated: 2022/05/11 14:44:04 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,28 @@ int main (int argc, char **argv, char **envp)
 			fd_in = get_segment_fd_in(array);
 			ft_printf(				   "3) get fd IN    :\t [ %d ]\n", fd_in);		
 			
+			if (fd_in < 0)
+			{
+				free_array(&array);
+				goto label_free_array;
+			}
+				
 			fd_out = get_segment_fd_out(array);	
 			ft_printf(				   "4) get fd OUT   :\t [ %d ]\n", fd_out);
 			
+			if (fd_out < 0)
+			{
+				free_array(&array);
+				goto label_free_array;
+			}
+
+			// --------------------
+			// BLOC DE CODE A FAIRE
+			// --------------------
+						
 			if (fd_out > 2)
 				close(fd_out);
+				
 			if (fd_in > 2)
 				close(fd_in);
 			
@@ -84,7 +101,7 @@ int main (int argc, char **argv, char **envp)
 				exit(0);			
 		}
 			
-		
+label_free_array:		
 		if (new_line)
 			free(new_line);	
 		new_line = NULL;	

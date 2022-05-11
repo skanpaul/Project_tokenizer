@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chevron_segment_utils.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sorakann <sorakann@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 10:12:10 by ski               #+#    #+#             */
-/*   Updated: 2022/05/10 22:09:45 by sorakann         ###   ########.fr       */
+/*   Updated: 2022/05/11 14:43:53 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	get_segment_fd_out(char **array)
 			// PEUT ETRE A EFFACER -----------------------------------------
 			if(array[i + 1] == NULL  || array[i + 1][0] == '\0')
 			{
-				ft_printf("syntax error near unexpected token `newline'\n");
+				ft_printf("minishell: syntax error near unexpected token `newline'\n");
 				fd_out = -1;
 				break ;
 			}
@@ -119,7 +119,7 @@ int	get_segment_fd_in(char **array)
 			// PEUT ETRE A EFFACER -----------------------------------------
 			if(array[i + 1] == NULL  || array[i + 1][0] == '\0')
 			{
-				ft_printf("syntax error near unexpected token `newline'\n");
+				ft_printf("minishell: syntax error near unexpected token `newline'\n");
 				fd_in = -1;
 				break ;
 			}
