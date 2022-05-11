@@ -6,7 +6,7 @@
 /*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 15:59:47 by ski               #+#    #+#             */
-/*   Updated: 2022/05/11 14:44:04 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/11 18:28:17 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,29 +56,45 @@ int main (int argc, char **argv, char **envp)
 			new_line = chevron_space_maker(new_line);
 			new_line = pipeline_space_maker(new_line);
 			ft_printf(				   "0) space making :\t %s\n", new_line);		
+
+
+
+
+
+
+			new_line = grammar_checker(new_line, &vars);
+			ft_printf(				   "1) grammar check:\t %s\n", new_line);			
+
+			if(!new_line)
+				goto label_free_line;
+
+
+
+
+
 			
 			array = split_shell_line(new_line, ' ');	
-			print_array_in_line(array, "1) split simple :\t ");
+			print_array_in_line(array, "2) split simple :\t ");
 
 			translate_dollars_all(array, &vars);
-			print_array_in_line(array, "2) translate $  :\t ");
+			print_array_in_line(array, "3) translate $  :\t ");
 			
 			fd_in = get_segment_fd_in(array);
-			ft_printf(				   "3) get fd IN    :\t [ %d ]\n", fd_in);		
+			ft_printf(				   "4) get fd IN    :\t [ %d ]\n", fd_in);		
 			
 			if (fd_in < 0)
 			{
 				free_array(&array);
-				goto label_free_array;
+				goto label_free_line;
 			}
 				
 			fd_out = get_segment_fd_out(array);	
-			ft_printf(				   "4) get fd OUT   :\t [ %d ]\n", fd_out);
+			ft_printf(				   "5) get fd OUT   :\t [ %d ]\n", fd_out);
 			
 			if (fd_out < 0)
 			{
 				free_array(&array);
-				goto label_free_array;
+				goto label_free_line;
 			}
 
 			// --------------------
@@ -92,7 +108,7 @@ int main (int argc, char **argv, char **envp)
 				close(fd_in);
 			
 			clear_chevron(array);
-			print_array_in_line(array, "5) clear chevron:\t ");
+			print_array_in_line(array, "6) clear chevron:\t ");
 			ft_printf("--------------------------------------------------------\n");
 			
 			free_array(&array);
@@ -101,7 +117,7 @@ int main (int argc, char **argv, char **envp)
 				exit(0);			
 		}
 			
-label_free_array:		
+label_free_line:		
 		if (new_line)
 			free(new_line);	
 		new_line = NULL;	

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   temporaire.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sorakann <sorakann@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 12:02:17 by ski               #+#    #+#             */
-/*   Updated: 2022/05/10 21:33:11 by sorakann         ###   ########.fr       */
+/*   Updated: 2022/05/11 17:00:49 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,17 @@ bool does_word_match(char *str, char *hard_text)
 	int res;
 
 	res = ft_strncmp(str, hard_text, ft_strlen(hard_text) + 1);
+	if (res == 0)
+		return (true);
+	return (false);	
+}
+
+/* ************************************************************************** */
+bool does_wordstart_match(char *str, char *hard_text)
+{
+	int res;
+
+	res = ft_strncmp(str, hard_text, ft_strlen(hard_text));
 	if (res == 0)
 		return (true);
 	return (false);	
