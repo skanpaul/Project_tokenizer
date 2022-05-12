@@ -6,7 +6,7 @@
 /*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 12:09:45 by sorakann          #+#    #+#             */
-/*   Updated: 2022/05/12 14:36:41 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/12 15:45:23 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static bool is_token_pipeline_correct(char **array, t_vars *vars)
 }
 
 /* ************************************************************************** */
-// --> pipeline symbol [ | ] can NOT bet PRECEDED by
+// pipeline token [ | ] can NOT bet PRECEDED by
 //		a) token starting with [ < , << , <<< , <<<< , ... ]
 //		b) token starting with [ > , >> , >>> , >>>> , ... ]
 // -------------------------------------------------
@@ -98,7 +98,7 @@ static bool is_previous_token_correct(char **array, t_vars *vars)
 }
 
 /* ************************************************************************** */
-// --> pipeline symbol [ | ] can NOT be FOLLOWED by
+// pipeline token [ | ] can NOT be FOLLOWED by
 //		a) empty token
 // -------------------------------------------------
 static bool is_next_token_correct(char **array, t_vars *vars)
@@ -124,7 +124,5 @@ static bool is_next_token_correct(char **array, t_vars *vars)
 
 	return (true);
 }
-
-
 
 /* ************************************************************************** */

@@ -6,7 +6,7 @@
 /*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 15:59:47 by ski               #+#    #+#             */
-/*   Updated: 2022/05/12 14:25:35 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/12 15:48:56 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,6 @@ int main (int argc, char **argv, char **envp)
 			
 			clear_chevron(array);
 			print_array_in_line(array, "6) clear chevron:\t ");
-			ft_printf("--------------------------------------------------------\n");
 			
 			free_array(&array);
 								
@@ -124,6 +123,7 @@ label_free_line:
 		if (new_line)
 			free(new_line);	
 		new_line = NULL;	
+		ft_printf("---------------------------------------------------\n");
 	}	
 	// ---------------------------------------------------
 	return (0);
