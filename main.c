@@ -6,7 +6,7 @@
 /*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 15:59:47 by ski               #+#    #+#             */
-/*   Updated: 2022/05/12 13:56:54 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/12 14:25:35 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,10 @@ int main (int argc, char **argv, char **envp)
 	vars.loc = (t_env *)malloc(1 * sizeof(t_env));
 	vars.loc->name = ft_strdup("AA");
 	vars.loc->data = ft_strdup("ski");
-	vars.loc->next = NULL;
+	vars.loc->next = (t_env *)malloc(1 * sizeof(t_env));
+	vars.loc->next->name = ft_strdup("?");
+	vars.loc->next->data = ft_strdup("0");
+	vars.loc->next->next = NULL;	
 	
 	// ---------------------------------------------------
 	while (1)

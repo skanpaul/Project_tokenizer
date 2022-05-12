@@ -6,7 +6,7 @@
 /*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 12:09:45 by sorakann          #+#    #+#             */
-/*   Updated: 2022/05/12 14:01:24 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/12 14:36:41 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,11 @@
 
 /* ************************************************************************** */
 static bool	is_token_pipeline_correct(char **array, t_vars *vars);
+static bool is_previous_token_correct(char **array, t_vars *vars);
+static bool	is_next_token_correct(char **array, t_vars *vars);
 
 /* ************************************************************************** */
 // RETURN: NULL if grammar is not correct and 
-//
-// --> pipeline symbol [ | ] HAS TO BE FOLLOWED by
-//		a) letter
-//		b) number
-//		c) underscore
-//		d) chevron symbols
-//		e) nothing ==> SPECIAL CASE
-// -------------------------------------------------
 // !!! WARNING: exit the main program if NULL is returned
 char	*check_grammar_pipeline(char *line, t_vars *vars)
 {
@@ -39,7 +33,9 @@ char	*check_grammar_pipeline(char *line, t_vars *vars)
 	translate_dollars_all(array, vars);
 	print_array_in_line(array, "B)   tok. trans.:\t ");
 
-    if (!is_token_pipeline_correct(array, vars))
+    if (!is_token_pipeline_correct(array, vars)
+		|| !is_previous_token_correct(array, vars)
+		|| !is_next_token_correct(array, vars))
 		ft_free_null((void **)&line);
     
     free_array(&array);
@@ -47,6 +43,8 @@ char	*check_grammar_pipeline(char *line, t_vars *vars)
 }
 
 /* ************************************************************************** */
+// pipeline token like [ || , ||| , |||| , ... ] are NOT correct
+// -------------------------------------------------
 static bool is_token_pipeline_correct(char **array, t_vars *vars)
 {
 	int i;
@@ -70,40 +68,62 @@ static bool is_token_pipeline_correct(char **array, t_vars *vars)
 }
 
 /* ************************************************************************** */
-// static bool is_previous_token_correct(char **array, t_vars *vars)
-// {
-// 	int i;
+// --> pipeline symbol [ | ] can NOT bet PRECEDED by
+//		a) token starting with [ < , << , <<< , <<<< , ... ]
+//		b) token starting with [ > , >> , >>> , >>>> , ... ]
+// -------------------------------------------------
+static bool is_previous_token_correct(char **array, t_vars *vars)
+{
+	int i;
 
-// 	i = 0;
-// 	while(array[i])
-// 	{
-// 		if( does_word_match)
+	i = 0;
+	while(array[i])
+	{
+		if(does_word_match(array[i], "|"))
+		{
+			if (i == 0
+				|| does_wordstart_match(array[i - 1], "<")
+				|| does_wordstart_match(array[i - 1], ">"))
+			{
+				update_var(&vars->loc, "?", "258"); // à refléchir
+				ft_printf("minishell: syntax error near token ");
+				ft_printf("\'%s\'\n", array[i]);
+				return (false);
+			}			
+		}
+		i++;
+	}
 
-
-		
-// 	}
-
-// 	return (true);
-// }
-
-
+	return (true);
+}
 
 /* ************************************************************************** */
-// static bool is_next_token_correct(char **array, t_vars *vars)
-// {
-// 	int i;
+// --> pipeline symbol [ | ] can NOT be FOLLOWED by
+//		a) empty token
+// -------------------------------------------------
+static bool is_next_token_correct(char **array, t_vars *vars)
+{
+	int i;
 
-// 	i = 0;
-// 	while(array[i])
-// 	{
-// 		if( does_word_match)
+	i = 0;
+	while(array[i])
+	{
+		if(does_word_match(array[i], "|"))
+		{
+			if (array[i + 1] == NULL
+				|| array[i + 1][0] == '\0')
+			{
+				update_var(&vars->loc, "?", "258"); // à refléchir
+				ft_printf("minishell: syntax error near token ");
+				ft_printf("\'%s\'\n", array[i]);
+				return (false);
+			}			
+		}
+		i++;
+	}
 
-
-		
-// 	}
-
-// 	return (true);
-// }
+	return (true);
+}
 
 
 

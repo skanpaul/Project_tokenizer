@@ -6,7 +6,7 @@
 /*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 15:10:05 by ski               #+#    #+#             */
-/*   Updated: 2022/05/12 13:51:00 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/12 14:20:48 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static bool	is_next_token_correct(char **array, t_vars *vars);
 /* ************************************************************************** */
 // return NULL if grammar about chevron is not correct
 // !!! WARNING !!!: exit the main program if NULL is returned
+// -------------------------------------------------
 char	*check_grammar_chevron(char *line, t_vars *vars)
 {
 	char	**array;
@@ -35,7 +36,7 @@ char	*check_grammar_chevron(char *line, t_vars *vars)
 	
 	if (!is_token_chevron_correct(array, vars)
 		|| !is_next_token_correct(array, vars))
-		ft_free_null((void **)line);
+		ft_free_null((void **)&line);
 		
 	free_array(&array);
 	return (line);
@@ -44,6 +45,7 @@ char	*check_grammar_chevron(char *line, t_vars *vars)
 /* ************************************************************************** */
 // chevron token like [ < , << , > , >> ] are correct
 // [ <<< , <<<< , ... , >>> , >>>>, ...] are NOT correct
+// -------------------------------------------------
 static bool	is_token_chevron_correct(char **array, t_vars *vars)
 {
 	int	i;
@@ -60,7 +62,7 @@ static bool	is_token_chevron_correct(char **array, t_vars *vars)
 				&& !does_word_match(array[i], ">>"))
 			{
 				update_var(&vars->loc, "?", "258"); // à refléchir
-				ft_printf("minishelle: syntax error near token ");
+				ft_printf("minishell: syntax error near token ");
 				ft_printf("\'%s\'\n", array[i]);
 				return (false);
 			}
@@ -76,6 +78,7 @@ static bool	is_token_chevron_correct(char **array, t_vars *vars)
 //				- [ < ] single or multiple
 //				- [ > ] single or multiple
 //				- [ | ] single or multiple
+// -------------------------------------------------
 static bool	is_next_token_correct(char **array, t_vars *vars)
 {
 	int i;
