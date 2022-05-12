@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   check_grammar_chevron.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sorakann <sorakann@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 15:10:05 by ski               #+#    #+#             */
-/*   Updated: 2022/05/12 12:32:52 by sorakann         ###   ########.fr       */
+/*   Updated: 2022/05/12 13:51:00 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
 /* ************************************************************************** */
-static bool	is_token_chevron_correct(char **array);
-static bool	is_next_token_correct(char **array);
+static bool	is_token_chevron_correct(char **array, t_vars *vars);
+static bool	is_next_token_correct(char **array, t_vars *vars);
 
 /* ************************************************************************** */
 // return NULL if grammar about chevron is not correct
@@ -23,6 +23,7 @@ char	*check_grammar_chevron(char *line, t_vars *vars)
 {
 	char	**array;
 
+	update_var(&vars->loc, "?", "0"); // à refléchir
 	if (!line)
 		return (NULL);
 	
@@ -32,7 +33,8 @@ char	*check_grammar_chevron(char *line, t_vars *vars)
 	translate_dollars_all(array, vars);
 	print_array_in_line(array, "B)   tok. trans.:\t ");
 	
-	if (!is_token_chevron_correct(array) || !is_next_token_correct(array))
+	if (!is_token_chevron_correct(array, vars)
+		|| !is_next_token_correct(array, vars))
 		ft_free_null((void **)line);
 		
 	free_array(&array);
@@ -42,7 +44,7 @@ char	*check_grammar_chevron(char *line, t_vars *vars)
 /* ************************************************************************** */
 // chevron token like [ < , << , > , >> ] are correct
 // [ <<< , <<<< , ... , >>> , >>>>, ...] are NOT correct
-static bool	is_token_chevron_correct(char **array)
+static bool	is_token_chevron_correct(char **array, t_vars *vars)
 {
 	int	i;
 
@@ -57,6 +59,7 @@ static bool	is_token_chevron_correct(char **array)
 				&& !does_word_match(array[i], ">")
 				&& !does_word_match(array[i], ">>"))
 			{
+				update_var(&vars->loc, "?", "258"); // à refléchir
 				ft_printf("minishelle: syntax error near token ");
 				ft_printf("\'%s\'\n", array[i]);
 				return (false);
@@ -73,7 +76,7 @@ static bool	is_token_chevron_correct(char **array)
 //				- [ < ] single or multiple
 //				- [ > ] single or multiple
 //				- [ | ] single or multiple
-static bool	is_next_token_correct(char **array)
+static bool	is_next_token_correct(char **array, t_vars *vars)
 {
 	int i;
 	char *next_token;
@@ -89,6 +92,7 @@ static bool	is_next_token_correct(char **array)
 				|| does_wordstart_match(next_token, ">")
 				|| does_wordstart_match(next_token, "|"))
 			{
+				update_var(&vars->loc, "?", "258"); // à refléchir
 				ft_printf("minishell: syntax error near token ");
 				ft_printf("\'%s\'\n", array[i]);
 				return (false);
