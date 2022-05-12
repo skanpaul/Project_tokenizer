@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sorakann <sorakann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 16:00:42 by ski               #+#    #+#             */
-/*   Updated: 2022/05/11 17:23:20 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/12 12:25:39 by sorakann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,7 +147,9 @@ int		get_segment_fd_out(char **array);
 void	clear_chevron(char **array);
 
 
-char	*grammar_checker(char *line, t_vars *vars);
+char	*check_grammar(char *line, t_vars *vars);
+char	*check_grammar_chevron(char *line, t_vars *vars);
+char	*check_grammar_pipeline(char *line, t_vars *vars);
 
 
 int		openfilex(char *filepath, int o_flag);

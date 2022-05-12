@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   grammar_checker.c                                  :+:      :+:    :+:   */
+/*   check_grammar_chevron.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sorakann <sorakann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 15:10:05 by ski               #+#    #+#             */
-/*   Updated: 2022/05/11 18:29:38 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/12 12:32:52 by sorakann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,60 +14,66 @@
 
 /* ************************************************************************** */
 static bool	is_token_chevron_correct(char **array);
-static bool	has_good_token_for_chevron(char **array);
+static bool	is_next_token_correct(char **array);
 
 /* ************************************************************************** */
-// !!! WARNING: exit the program if NULL is returned
-// -------------------------------------------------
-// RETURN: NULL if grammar is not correct and 
-//
-// --> pipeline symbol [ | ] HAS TO BE FOLLOWED by
-//		a) letter
-//		b) number
-//		c) underscore
-//		d) chevron symbols
-//		e) nothing ==> SPECIAL CASE
-// -------------------------------------------------
-// !!! WARNING: exit the program if NULL is returned
-char	*grammar_checker(char *line, t_vars *vars)
+// return NULL if grammar about chevron is not correct
+// !!! WARNING !!!: exit the main program if NULL is returned
+char	*check_grammar_chevron(char *line, t_vars *vars)
 {
 	char	**array;
 
+	if (!line)
+		return (NULL);
+	
 	array = NULL;
-	
 	array = split_shell_line(line, ' ');
-	print_array_in_line(array, "1.1) tokens     :\t ");
+	print_array_in_line(array, "A)   tokens     :\t ");
 	translate_dollars_all(array, vars);
-	print_array_in_line(array, "1.2) tok. trans.:\t ");
+	print_array_in_line(array, "B)   tok. trans.:\t ");
 	
-	if (!is_token_chevron_correct(array))
-	{
-		free_array(&array);
-		// free line a un moment donné
-		return (NULL);
-	}
-	
-	if (!has_good_token_for_chevron(array))
-	{
-		free_array(&array);
-		// free line a un moment donné
-		return (NULL);
-	}
-
-
-	
+	if (!is_token_chevron_correct(array) || !is_next_token_correct(array))
+		ft_free_null((void **)line);
+		
 	free_array(&array);
 	return (line);
 }
 
 /* ************************************************************************** */
+// chevron token like [ < , << , > , >> ] are correct
+// [ <<< , <<<< , ... , >>> , >>>>, ...] are NOT correct
+static bool	is_token_chevron_correct(char **array)
+{
+	int	i;
+
+	i = 0;
+	while (array[i])
+	{
+		if (does_wordstart_match(array[i], "<")
+			|| does_wordstart_match(array[i], ">"))
+		{
+			if (!does_word_match(array[i], "<")
+				&& !does_word_match(array[i], "<<")
+				&& !does_word_match(array[i], ">")
+				&& !does_word_match(array[i], ">>"))
+			{
+				ft_printf("minishelle: syntax error near token ");
+				ft_printf("\'%s\'\n", array[i]);
+				return (false);
+			}
+		}
+		i++;
+	}
+	return (true);
+}
+
+/* ************************************************************************** */
 // chevron token [ < , << , > , >> ] HAVE TO BE FOLLOWED
-// by a token without
+// by a next_token WITHOUT
 //				- [ < ] single or multiple
 //				- [ > ] single or multiple
 //				- [ | ] single or multiple
-// static bool	is_next_token_correct_for_chevron(char **array)
-static bool	has_good_token_for_chevron(char **array)
+static bool	is_next_token_correct(char **array)
 {
 	int i;
 	char *next_token;
@@ -93,30 +99,4 @@ static bool	has_good_token_for_chevron(char **array)
 	return (true);
 }
 
-
-/* ************************************************************************** */
-static bool	is_token_chevron_correct(char **array)
-{
-	int	i;
-
-	i = 0;
-	while (array[i])
-	{
-		if (does_wordstart_match(array[i], "<")
-			|| does_wordstart_match(array[i], ">"))
-		{
-			if (!does_word_match(array[i], "<")
-				&& !does_word_match(array[i], "<<")
-				&& !does_word_match(array[i], ">")
-				&& !does_word_match(array[i], ">>"))
-			{
-				ft_printf("minishelle: syntax error near token ");
-				ft_printf("\'%s\'\n", array[i]);
-				return (false);
-			}
-		}
-		i++;
-	}
-	return (true);
-}
 /* ************************************************************************** */

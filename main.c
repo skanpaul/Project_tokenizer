@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sorakann <sorakann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 15:59:47 by ski               #+#    #+#             */
-/*   Updated: 2022/05/11 18:28:17 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/12 12:12:54 by sorakann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int main (int argc, char **argv, char **envp)
 
 
 
-			new_line = grammar_checker(new_line, &vars);
+			new_line = check_grammar_chevron(new_line, &vars);
 			ft_printf(				   "1) grammar check:\t %s\n", new_line);			
 
 			if(!new_line)
