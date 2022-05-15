@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sorakann <sorakann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 15:59:47 by ski               #+#    #+#             */
-/*   Updated: 2022/05/12 15:48:56 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/16 00:02:17 by sorakann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int main (int argc, char **argv, char **envp)
 	while (1)
 	{
 		new_line = readline("prompt> ");
-		// new_line = ft_strdup("grep>out1 jus");
+		// new_line = ft_strdup("exit");
 		
 		ft_add_history(new_line);
 
@@ -58,23 +58,13 @@ int main (int argc, char **argv, char **envp)
 			ft_printf("---------------------------------------------------\n");
 			new_line = chevron_space_maker(new_line);
 			new_line = pipeline_space_maker(new_line);
-			ft_printf(				   "0) space making :\t %s\n", new_line);		
-
-
-
-
-
+			ft_printf(				   "0) space making :\t %s\n", new_line);
 
 			new_line = check_grammar(new_line, &vars);
 			ft_printf(				   "1) check grammar:\t %s\n", new_line);			
 
 			if(!new_line)
 				goto label_free_line;
-
-
-
-
-
 			
 			array = split_shell_line(new_line, ' ');	
 			print_array_in_line(array, "2) split simple :\t ");
@@ -115,8 +105,8 @@ int main (int argc, char **argv, char **envp)
 			
 			free_array(&array);
 								
-			if (ft_strncmp(new_line, "exit", ft_strlen("exit") + 1) == 0)
-				exit(0);			
+			if (does_word_match(new_line, "exit"))
+				break ;
 		}
 			
 label_free_line:		
@@ -125,6 +115,14 @@ label_free_line:
 		new_line = NULL;	
 		ft_printf("---------------------------------------------------\n");
 	}	
+	// ---------------------------------------------------
+	free_var_list(&vars.loc);
+	rl_clear_history();
+
+	if (new_line)
+			free(new_line);	
+		new_line = NULL;	
+	
 	// ---------------------------------------------------
 	return (0);
 }

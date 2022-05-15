@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   array_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sorakann <sorakann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 14:59:35 by ski               #+#    #+#             */
-/*   Updated: 2022/05/10 11:53:12 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/15 17:26:07 by sorakann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,9 @@ void print_array_in_line(char **array, char *comment)
 void free_array(char ***array)
 {
 	int i;
+
+	if (*array == NULL)
+		return ;
 
 	i = 0;
 	while ((*array)[i] != NULL)
