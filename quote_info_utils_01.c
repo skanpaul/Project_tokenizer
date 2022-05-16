@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quote_info_utils_01.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sorakann <sorakann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 10:28:17 by ski               #+#    #+#             */
-/*   Updated: 2022/05/06 11:12:40 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/16 18:46:26 by sorakann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ bool is_line_with_correct_quote(char *line)
 	if (is_good_number_of_realquote(&qti))
 		return (true);
 		
+	ft_printf("\n ---------- !!! BAD QUOTING !!! ---------- \n");	
 	return (false);
 }
 

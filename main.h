@@ -6,7 +6,7 @@
 /*   By: sorakann <sorakann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 16:00:42 by ski               #+#    #+#             */
-/*   Updated: 2022/05/12 12:25:39 by sorakann         ###   ########.fr       */
+/*   Updated: 2022/05/16 18:44:41 by sorakann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,8 +148,13 @@ void	clear_chevron(char **array);
 
 
 char	*check_grammar(char *line, t_vars *vars);
+bool	is_grammar_correct(char *line, t_vars *vars);
+
 char	*check_grammar_chevron(char *line, t_vars *vars);
+bool	is_grammar_chevron_correct(char *line, t_vars *vars);
+
 char	*check_grammar_pipeline(char *line, t_vars *vars);
+bool	is_grammar_pipeline_correct(char *line, t_vars *vars);
 
 
 int		openfilex(char *filepath, int o_flag);

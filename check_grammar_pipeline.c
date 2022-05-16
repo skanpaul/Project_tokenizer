@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_grammar_pipeline.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sorakann <sorakann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 12:09:45 by sorakann          #+#    #+#             */
-/*   Updated: 2022/05/16 16:09:01 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/16 18:41:49 by sorakann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,7 @@ char	*check_grammar_pipeline(char *line, t_vars *vars)
 }
 
 /* ************************************************************************** */
-// RETURN: false if grammar is not correct and 
-// !!! WARNING: exit the main program if false is returned
+// return: FALSE if grammar is not correct and 
 bool	is_grammar_pipeline_correct(char *line, t_vars *vars)
 {
     char	**array;

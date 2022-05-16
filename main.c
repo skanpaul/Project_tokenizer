@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: sorakann <sorakann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 15:59:47 by ski               #+#    #+#             */
-/*   Updated: 2022/05/16 11:42:40 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/16 19:01:32 by sorakann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,18 @@ int main (int argc, char **argv, char **envp)
 
 		if (new_line && new_line[0] != '\0')
 		{
-			if (is_line_with_correct_quote(new_line) == false)
-			{
-				ft_printf("\n ---------- !!! BAD QUOTING !!! ---------- \n");
-				// clean prog + exit prog
+			
+			if(!is_grammar_correct(new_line, &vars))
+			{	
+				ft_printf("Genreral grammas is not correct\n");	
+				goto label_free_line;
 			}
+			
+			// if (is_line_with_correct_quote(new_line) == false)
+			// {
+			// 	ft_printf("\n ---------- !!! BAD QUOTING !!! ---------- \n");
+			// 	// clean prog + exit prog
+			// }
 
 			ft_printf("---------------------------------------------------\n");
 			new_line = chevron_space_maker(new_line);
@@ -61,11 +68,10 @@ int main (int argc, char **argv, char **envp)
 			ft_printf(				   "0) space making :\t %s\n", new_line);
 
 			new_line = check_grammar(new_line, &vars);
-			ft_printf(				   "1) check grammar:\t %s\n", new_line);			
-
+			ft_printf(				   "1) check grammar:\t %s\n", new_line);
 			if(!new_line)
-				goto label_free_line;
-			
+				goto label_free_line;	
+		
 			array = split_shell_line(new_line, ' ');	
 			print_array_in_line(array, "2) split simple :\t ");
 
