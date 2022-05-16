@@ -6,7 +6,7 @@
 /*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 12:09:45 by sorakann          #+#    #+#             */
-/*   Updated: 2022/05/12 15:45:23 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/16 16:09:01 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ char	*check_grammar_pipeline(char *line, t_vars *vars)
 	
 	array = NULL;
 	array = split_shell_line(line, ' ');
-	print_array_in_line(array, "A)   tokens     :\t ");
+	// print_array_in_line(array, "A)   tokens     :\t ");
 	translate_dollars_all(array, vars);
-	print_array_in_line(array, "B)   tok. trans.:\t ");
+	// print_array_in_line(array, "B)   tok. trans.:\t ");
 
     if (!is_token_pipeline_correct(array, vars)
 		|| !is_previous_token_correct(array, vars)
@@ -40,6 +40,31 @@ char	*check_grammar_pipeline(char *line, t_vars *vars)
     
     free_array(&array);
     return (line);
+}
+
+/* ************************************************************************** */
+// RETURN: false if grammar is not correct and 
+// !!! WARNING: exit the main program if false is returned
+bool	is_grammar_pipeline_correct(char *line, t_vars *vars)
+{
+    char	**array;
+
+	if (!line)
+		return (false);
+	
+	array = NULL;
+	array = split_shell_line(line, ' ');
+	// print_array_in_line(array, "A)   tokens     :\t ");
+	translate_dollars_all(array, vars);
+	// print_array_in_line(array, "B)   tok. trans.:\t ");
+
+    if (!is_token_pipeline_correct(array, vars)
+		|| !is_previous_token_correct(array, vars)
+		|| !is_next_token_correct(array, vars))
+		return (false);
+    
+    free_array(&array);
+    return (true);
 }
 
 /* ************************************************************************** */
