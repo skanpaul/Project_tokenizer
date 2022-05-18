@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sorakann <sorakann@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 15:59:47 by ski               #+#    #+#             */
-/*   Updated: 2022/05/16 19:01:32 by sorakann         ###   ########.fr       */
+/*   Updated: 2022/05/18 11:02:43 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,18 @@ int main (int argc, char **argv, char **envp)
 	t_vars vars;
 	int fd_in;
 	int fd_out;
+	struct termios ta;
+	
+	//------------------------------------
+	tcgetattr(STDIN_FILENO, &ta);
+	print_termios_attributes(ta);
+
+	
+	//tcgetattr(STDIN_FILENO, &attributes);
+	//attributes.c_lflag &= ~ ECHO;
+	//tcsetattr(STDIN_FILENO, TCSAFLUSH, &attributes);	
+	//tcsetattr(STDIN_FILENO, TCSAFLUSH, &attributes);
+	//------------------------------------
 
 	// ---------------------------------------------------
 	(void)argc;
@@ -65,13 +77,8 @@ int main (int argc, char **argv, char **envp)
 			ft_printf("---------------------------------------------------\n");
 			new_line = chevron_space_maker(new_line);
 			new_line = pipeline_space_maker(new_line);
-			ft_printf(				   "0) space making :\t %s\n", new_line);
+			ft_printf(				   "1) space making :\t %s\n", new_line);
 
-			new_line = check_grammar(new_line, &vars);
-			ft_printf(				   "1) check grammar:\t %s\n", new_line);
-			if(!new_line)
-				goto label_free_line;	
-		
 			array = split_shell_line(new_line, ' ');	
 			print_array_in_line(array, "2) split simple :\t ");
 

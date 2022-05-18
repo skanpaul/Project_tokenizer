@@ -6,7 +6,7 @@
 /*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 12:19:45 by sorakann          #+#    #+#             */
-/*   Updated: 2022/05/17 11:03:37 by ski              ###   ########.fr       */
+/*   Updated: 2022/05/18 08:27:34 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ bool	is_grammar_correct(char *line, t_vars *vars)
 	char *cpy_line;
 
 	cpy_line = ft_strdup(line);
-	if (is_line_with_correct_quote(cpy_line))
+	if (is_line_with_correct_quote(cpy_line, vars))
 	{
 		cpy_line = chevron_space_maker(cpy_line);
 		cpy_line = pipeline_space_maker(cpy_line);

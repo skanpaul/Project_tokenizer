@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sorakann <sorakann@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ski <ski@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 16:00:42 by ski               #+#    #+#             */
-/*   Updated: 2022/05/16 18:44:41 by sorakann         ###   ########.fr       */
+/*   Updated: 2022/05/18 11:01:09 by ski              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # include <signal.h>
 # include <readline/history.h>
 # include <readline/readline.h>
+# include <termios.h>
 /* ************************************************************************** */
 # define NO_ERROR		0
 # define ERROR			1
@@ -101,7 +102,8 @@ char	*substitute_vardol(char *str, int *start_pos, t_vars *vars);
 char	*delete_char(char *str, int *i);
 
 // ----------------------------------------------
-bool 	is_line_with_correct_quote(char *line);
+
+bool	is_line_with_correct_quote(char *line, t_vars *vars);
 // ----------------------------------------------
 void	init_quote_info(t_quote_info *qti);
 void	refresh_quote_info(t_quote_info *qti, char actual_char);
@@ -147,17 +149,16 @@ int		get_segment_fd_out(char **array);
 void	clear_chevron(char **array);
 
 
-char	*check_grammar(char *line, t_vars *vars);
 bool	is_grammar_correct(char *line, t_vars *vars);
-
-char	*check_grammar_chevron(char *line, t_vars *vars);
 bool	is_grammar_chevron_correct(char *line, t_vars *vars);
-
-char	*check_grammar_pipeline(char *line, t_vars *vars);
 bool	is_grammar_pipeline_correct(char *line, t_vars *vars);
 
 
 int		openfilex(char *filepath, int o_flag);
+
+
+
+void print_termios_attributes(struct termios ta);
 
 /* ************************************************************************** */
 #endif
